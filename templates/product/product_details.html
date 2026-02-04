@@ -1,0 +1,228 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+Product Details
+{% endblock %}
+
+{% block content %}
+
+<style>
+    /* ===== Keep your existing styles unchanged ===== */
+.pro-btn {
+    padding: 12px 26px;
+    font-weight: 600;
+    border-radius: 50px;
+    letter-spacing: 0.3px;
+    transition: all 0.3s ease;
+}
+
+.pro-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.product-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+}
+
+/* ===== FIXED carousel radius + overflow issue ===== */
+#productCarousel,
+#productCarousel .carousel-inner,
+#productCarousel .carousel-item,
+#productCarousel .image-wrapper {
+    height: 500px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+/* Important: remove radius from img itself */
+#productCarousel .carousel-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0 !important;
+    display: block;
+}
+
+/* ===== Thumbnails (unchanged) ===== */
+.thumb-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.thumb-img:hover {
+    transform: scale(1.05);
+    border-color: #0d6efd;
+}
+
+/* ===== Text / UI (unchanged) ===== */
+.product-title {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.product-price {
+    font-size: 26px;
+    font-weight: 700;
+    color: #198754;
+}
+
+.btn-lg {
+    padding: 12px 26px;
+    font-weight: 600;
+}
+
+/* ===== Overlay buttons (unchanged) ===== */
+.image-wrapper {
+    position: relative;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 10;
+}
+
+.image-overlay a {
+    background: white;
+    padding: 6px 10px;
+    border-radius: 30%;
+    text-decoration: none;
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    transition: 0.2s ease;
+}
+
+.image-overlay a:hover {
+    transform: scale(1.1);
+}
+
+.delete-btn:hover {
+    background: #dc3545;
+    color: white;
+}
+
+.edit-btn:hover {
+    background: #0d6efd;
+    color: white;
+}
+
+</style>
+
+
+<section class="container py-5">
+    <div class="row product-card">
+
+        <!-- Gallery -->
+        <div class="col-md-6">
+
+            <div id="productCarousel" class="carousel slide mb-4" data-bs-ride="carousel"
+                style="height:500px; overflow:hidden;">
+                <div class="carousel-inner" style="height:500px;">
+
+                    {% for image in product.images.all %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}" style="height:500px;">
+
+                        <div class="image-wrapper">
+
+                            <!-- Overlay Buttons -->
+
+                            <!-- Image -->
+                            <img src="{{ image.img.url }}" class="d-block w-100" style="height:500px; object-fit:cover;"
+                                alt="product">
+                                
+                            <div class="image-overlay">
+                                <a href="{% url 'del_prod_image' image.pk %}" class="delete-btn" title="Delete">
+                                   Delete
+                                </a>
+
+                                <a href="{% url 'edit_prod_image' image.pk %}" class="edit-btn" title="Edit">
+                                   Edit
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+
+                <button class="carousel-control-next" type="button" data-bs-target="#productCarousel"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+
+            <!-- Thumbnails -->
+            <div class="d-flex gap-3 flex-wrap justify-content-center">
+                {% for image in product.images.all %}
+                <img src="{{ image.img.url }}" data-bs-target="#productCarousel"
+                    data-bs-slide-to="{{ forloop.counter0 }}" class="thumb-img shadow-sm">
+                {% endfor %}
+            </div>
+
+        </div>
+
+        <!-- Product Info -->
+        <div class="col-md-6 px-md-5 mt-4 mt-md-0">
+
+            <h2 class="product-title">{{ product.title }}</h2>
+
+            <p class="text-muted mt-3 fs-6">
+                {{ product.desc }}
+            </p>
+
+            <div class="product-price mt-3">
+                ₹ {{ product.price }}.00
+            </div>
+
+            <hr class="my-4">
+
+            <div class="d-flex flex-wrap gap-3 mt-4">
+                <a href="#" class="btn btn-primary pro-btn">
+                    <i class="bi bi-cart4"></i> Add to Cart
+                </a>
+
+                <a href="{% url 'edit_product' product.pk %}" class="btn btn-outline-warning pro-btn">
+                    <i class="bi bi-pencil-square"></i> Edit
+                </a>
+
+                <a href="{% url 'delete_product' product.pk %}" class="btn btn-outline-danger pro-btn">
+                    <i class="bi bi-trash3"></i> Delete
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section class="container mt-4">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">
+            Add Media
+        </button>
+    </form>
+</section>
+
+
+{% endblock %}

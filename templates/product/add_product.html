@@ -1,0 +1,38 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+Add Product
+{% endblock %}
+
+
+{% block content %}
+
+<section class="p-5">
+    <div class="container ">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="card shadow-lg border-0 rounded-4">
+                    <div class="card-body p-4">
+                        <h3 class="text-center mb-4">
+                            Login
+                        </h3>
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% if form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                {{ form.non_field_errors }}
+                            </div>
+                            {% endif %}
+
+                            {% for field in form %}
+                            {% include 'base/includes/basic_form_field.html' %}
+                            {% endfor %}
+                            <button type="submit" class="btn btn-warning w-100">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

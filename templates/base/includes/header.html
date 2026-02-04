@@ -1,0 +1,105 @@
+<header >
+    <nav  id="main-navbar" class="navbar navbar-expand-lg bg-dark fixed-top" data-bs-theme="dark">
+        <div class="container-fluid">
+
+            <!-- BRAND -->
+            <a class="navbar-brand text-warning fw-bold" href="{% url 'home_page' %}">
+                E-Shop
+            </a>
+
+            <!-- MOBILE TOGGLER -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <!-- LEFT NAV LINKS -->
+                <ul class="navbar-nav me-3 mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link {% if current_page == 'home' %}active{% endif %}"
+                           href="{% url 'home_page' %}">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {% if current_page == 'about' %}active{% endif %}"
+                           href="{% url 'about_page' %}">About</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                            Manage
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'products' %}">Products</a></li>
+                            <li><a class="dropdown-item" href="{% url 'carousel_list' %}">Carousels</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <!--  SEARCH BAR -->
+                <form class="d-flex flex-grow-1 mx-lg-3"
+                      method="get"
+                      action="{% url 'search_products' %}">
+
+                    <input name="q"
+                           value="{{ query }}"
+                           class="form-control rounded-start"
+                           type="search"
+                           placeholder="Search cameras, lenses, accessories..."
+                           aria-label="Search">
+
+                    <button class="btn btn-warning rounded-end" type="submit">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </form>
+
+                <!-- RIGHT SIDE -->
+                <ul class="navbar-nav ms-auto align-items-center mb-2 mb-lg-0">
+
+                    <!--  CART -->
+                    <li class="nav-item me-3 position-relative">
+                        <a class="nav-link" href="{% url 'view_cart' %}" >
+                            <i class="bi bi-cart3 fs-4"></i>
+                            {% if user.is_authenticated %}
+                            <span class="cart-badge" id="cart-count" data-count-url = "{% url 'cart_count' %}">0</span>
+                            {% endif %}
+                    
+                        </a>
+                    </li>
+
+                    <!-- ACCOUNT -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center"
+                           href="#" data-bs-toggle="dropdown">
+                            <i class="bi bi-person-circle me-1"></i>
+                            {% if user.is_authenticated %}
+                                {{user.username.capitalize}}
+                            {% else %}
+                                Hi User!
+                            {% endif %}
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            {% if user.is_authenticated %}
+                            <li>
+                                <form action="{% url 'logout' %}" method="post">
+                                    {% csrf_token %}
+                                    <button class="dropdown-item text-danger">Logout</button>
+                                </form>
+                            </li>
+                            {% else %}
+                            <li><a class="dropdown-item" href="{% url 'signup' %}">Register</a></li>
+                            <li><a class="dropdown-item" href="{% url 'signin' %}">Login</a></li>
+                            {% endif %}
+                            
+                        </ul>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+</header>
