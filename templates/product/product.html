@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+Products
+{% endblock %}
+
+{% block content %}
+<section class="d-flex justify-content-center align-items-center pt-4">
+    <a href="{% url 'add_product' %}" class="btn btn-success">Add Product</a>
+</section>
+<section>
+
+    <div>
+        {% include 'products/includes/productsSection.html' %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,53 @@
+<div class="cart-item card shadow-sm">
+
+    <div class="row g-0 align-items-center">
+
+        <!-- Image -->
+        <div class="col-md-3 text-center cart-thumb">
+            <img src="{{ item.product.thumbnail.url }}"
+                 class="img-fluid rounded">
+        </div>
+
+        <!-- Details -->
+        <div class="col-md-6">
+            <div class="card-body">
+
+                <h5 class="cart-product-title">
+                    <a href="{% url 'product_details' item.product.pk %}" class="no-decoration">
+                    {{ item.product.title }}
+                    </a>
+                </h5>
+
+                <p class="cart-product-desc">
+                    {{ item.product.desc|truncatewords:15 }}
+                </p>
+
+                <p class="cart-price">
+                    ₹{{ item.product.price }}
+                </p>
+
+                <div class="cart-controls">
+
+                    <button class="btn btn-outline-secondary btn-sm">-</button>
+
+                    <span class="cart-qty">{{ item.quantity }}</span>
+
+                    <button class="btn btn-outline-secondary btn-sm">+</button>
+
+                    <button class="btn btn-danger btn-sm ms-3">
+                        Remove
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Subtotal -->
+        <div class="col-md-3 text-end cart-subtotal">
+            ₹{{ item.subtotal }}
+        </div>
+
+    </div>
+
+</div>

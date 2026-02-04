@@ -1,0 +1,60 @@
+<div id="homeCarousel"
+     class="carousel slide"
+     data-bs-ride="carousel"
+     data-bs-interval="3000"
+     data-bs-pause="hover">
+
+    <!-- Indicators -->
+    <div class="carousel-indicators">
+        {% for image in carousel_images %}
+            <button
+                type="button"
+                data-bs-target="#homeCarousel"
+                data-bs-slide-to="{{ forloop.counter0 }}"
+                class="{% if forloop.first %}active{% endif %}"
+                aria-current="{% if forloop.first %}true{% endif %}"
+                aria-label="Slide {{ forloop.counter }}">
+            </button>
+        {% endfor %}
+    </div>
+
+    <!-- Slides -->
+    <div class="carousel-inner">
+        {% for image in carousel_images %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <img src="{{ image.img.url }}"
+                     class="d-block w-100 home-carousel-img"
+                     alt="{{ image.title }}">
+
+                {% if image.title or image.caption %}
+                <div class="carousel-caption d-none d-md-block home-carousel-caption">
+                    <h5>{{ image.title }}</h5>
+                    <p>{{ image.caption }}</p>
+
+                    {% if image.link %}
+                        <a href="{{ image.link }}" class="btn btn-sm btn-light-outline" target="_blank">
+                            Explore
+                        </a>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Controls -->
+    <button class="carousel-control-prev"
+            type="button"
+            data-bs-target="#homeCarousel"
+            data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+
+    <button class="carousel-control-next"
+            type="button"
+            data-bs-target="#homeCarousel"
+            data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+
+</div>

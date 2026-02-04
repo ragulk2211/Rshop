@@ -1,0 +1,61 @@
+<div id="productImageCarousel"
+     class="carousel slide product-carousel"
+     data-bs-ride="carousel">
+
+    {% if product.images.all %}
+    <!-- SLIDES -->
+    <div class="carousel-inner">
+
+        {% for image in product.images.all %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+
+            <!-- Image-level Actions -->
+            <a href="{% url 'edit_prod_image' image.pk %}"
+               class="btn btn-sm btn-outline-light image-btn image-btn-left">
+                Edit
+            </a>
+
+            <a href="{% url 'del_prod_image' image.pk %}"
+               class="btn btn-sm btn-outline-danger image-btn image-btn-right">
+                Delete
+            </a>
+
+            <img src="{{ image.img.url }}"
+                 class="d-block w-100 product-main-img"
+                 alt="{{ product.title }}">
+        </div>
+        {% endfor %}
+
+    </div>
+
+    <!-- CONTROLS (only if more than 1 image) -->
+    {% if product.images.count > 1 %}
+    <button class="carousel-control-prev"
+            type="button"
+            data-bs-target="#productImageCarousel"
+            data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+
+    <button class="carousel-control-next"
+            type="button"
+            data-bs-target="#productImageCarousel"
+            data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+    {% endif %}
+
+    {% else %}
+    <!-- EMPTY STATE -->
+    <div class="d-flex align-items-center justify-content-center"
+         style="height: 420px; background: #111; color: #aaa; border-radius: 12px;">
+        <div class="text-center">
+            <p class="mb-2">No product images uploaded</p>
+            <small class="text-info">
+                Upload images to showcase this product
+            </small>
+        </div>
+    </div>
+    {% endif %}
+
+</div>

@@ -1,0 +1,92 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}
+About | Eshop
+{% endblock %}
+
+{% block content %}
+<div class="container my-5" id="about-page">
+
+    <!-- Hero Section -->
+    <section class="text-center mb-5" id="about-hero">
+        <h1 class="fw-bold" id="about-title">About <span class="text-primary">Eshop</span></h1>
+        <p class="lead mt-3" id="about-subtitle">
+            Your trusted destination for quality products, great prices, and a seamless shopping experience.
+        </p>
+    </section>
+
+    <!-- About Content -->
+    <section class="row align-items-center mb-5" id="about-main">
+        <div class="col-md-6 mb-4 mb-md-0" id="about-text-section">
+            <h3 class="mb-3" id="about-heading">Who We Are</h3>
+            <p id="about-description">
+                <strong>Eshop</strong> is an e-commerce platform built to make online shopping simple,
+                fast, and reliable. We carefully curate our products to ensure quality and value,
+                while providing a smooth and secure checkout experience.
+            </p>
+            <p id="about-description-secondary">
+                Whether you're shopping for everyday essentials or something special,
+                Eshop is designed with you in mind.
+            </p>
+        </div>
+
+        <div class="col-md-6 text-center" id="about-image-section">
+            <img src="{% static 'images/logo/logo.png' %}"
+                 class="img-fluid rounded shadow"
+                 alt="About Eshop"
+                 id="about-image">
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="mb-5" id="about-features">
+        <h3 class="text-center mb-4" id="features-heading">Why Choose Eshop?</h3>
+        <div class="row text-center">
+            <div class="col-md-4 mb-4" id="feature-1">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Quality Products</h5>
+                        <p class="card-text">
+                            Every product is selected with quality and reliability in mind.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4" id="feature-2">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Secure Payments</h5>
+                        <p class="card-text">
+                            Your transactions are protected with modern security standards.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4" id="feature-3">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Fast Support</h5>
+                        <p class="card-text">
+                            Our support team is always ready to help you.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Note -->
+    <section class="text-center" id="about-footer">
+        <p class="text-muted mb-1">
+            Current Page : {{ current_page }}
+        </p>
+        <p id="about-footer-text">
+            Thank you for choosing <strong>Eshop</strong>. Happy Shopping! 🛒
+        </p>
+    </section>
+
+</div>
+{% endblock %}
