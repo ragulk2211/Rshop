@@ -21,4 +21,5 @@ class CartItem(models.Model):
     
     @property
     def subtotal(self):
-        return self.quantity * self.product.price
+        price = self.product.offer_price or self.product.price
+        return self.quantity * price
