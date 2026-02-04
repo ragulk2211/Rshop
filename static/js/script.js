@@ -1,79 +1,82 @@
-// Cart handling
+//  add to cart 
 
 
+const products_container = document.querySelector("#products-container");
 
-// Add to cart
+let cart_count = document.querySelector("#cart-count") ;
+// Load current value
 
-const products_container = document.getElementById('products-container');
+async function loadcartCount() {
+    const countUrl = cart_count.dataset.countUrl;
 
-const cart_count = document.getElementById("cart-count");
-    // load current value
-    
-    async function loadCartCount(){
-        const countUrl = cart_count.dataset.countUrl;
-        try {
-            const result = await fetch(countUrl);
-            const data = await result.json();
-            cart_count.innerText = data.cart_count;
-        }
-        catch(error){
-            console.error(`Cart count fetch error : ${error}`)
-        }
+    try{
+        const result = await fetch(countUrl);
+        const data = await result.json();
+        cart_count.innerHTML.data.cart_count
     }
-    if (cart_count){
-    loadCartCount();
+    catch(erroe){
+        console.error(`Cart count fetch error : ${error}`)
     }
+}
+if (cart_count){
+    loadcartCount
+}
 
-const csrfToken = document.querySelector("[name = csrfmiddlewaretoken]").value
+const csrfToken = document.querySelector('[name = csrfmiddlewaretoken]').value
 
 
-
+// add to cart url
+const addUrl = products_container.dataset.addUrl;
 
 // adding event listener onto product cards through their parent container
-if(products_container){
-    // add to cart url 
-    const addUrl = products_container.dataset.addUrl;
-products_container.addEventListener('click', async function (event) {
 
-    if (!event.target.classList.contains('add-to-cart')) {
+products_container.addEventListener('click', async function (event) {
+    if(!event.target.classList.contains('add-to-cart')){
         return;
     }
-
     const btn = event.target;
     const product_card = btn.closest(".product-card");
     const productId = product_card.dataset.productId;
 
     btn.disabled = true;
-    btn.innerText = "Loading...";
 
     // try to make a POST request
-    try {
+
+    try{
         const response = await fetch(addUrl, {
-            method: "POST",
-            headers: {
+            method : 'POST',
+            headers : {
                 'X-CSRFToken': csrfToken,
-                "Content-Type": "application/x-www-form-urlencoded"
+                
+                "Content-Type" : "application/X-WWW-form-urlencoded"
             },
-            body: `product_id=${productId}`
+            body : `product_id=${productId}`
         })
         const data = await response.json();
 
         // if the backend returns 401 status,
-        if (response.status === 401 && data.redirect_url) {
+
+        if (response.status === 401 && data.redirect_url){
             window.location.href = data.redirect_url;
             return;
         }
-
-        if (data.cart_count !== undefined) {
-            cart_count.innerText = data.cart_count;
+        if (data.cart_count !== undefined){
+            cart_count.innerHTML = data.cart_count;
         }
     }
-    catch (error) {
-        console.error("Cart error:", error);
+    catch(error){
+        console.error(`cart error ${error}`)    
     }
-    finally {
+    finally{
         btn.disabled = false;
-        btn.innerText = "Add to Cart";
+        btn.innerText = "Add to Cart"
     }
 });
-}
+
+// function getCookie(name){
+//     let cookieValue = null;
+
+//     if (document.cookie && document.cookie !== cookie){
+//         const cookies = document.cookie.split()
+//     }
+// }
