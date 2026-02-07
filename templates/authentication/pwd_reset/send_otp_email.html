@@ -1,23 +1,23 @@
-{% extends  'base/base,html' %}
+{% extends 'base/base.html' %}
 
 {% block title %}
-Forgot Password
+Fotgot password
 {% endblock %}
 
-{% block context %}
+{% block content %}
 <div class="container pt-5">
-    <h2>Send otp registered Email</h2>
+    <h2>Send otp to Registered Email</h2>
 
-    <form action="POST">
+    <form method="POST">
         {% csrf_token %}
-        <div class="md-3">
-            <label for="email" class="form-label">
+        <div class="mb-3">
+            <label for="email" class="form-lable">
                 Email Address
             </label>
             <input type="email" class="form-control" name="email" id="email" required>
-
         </div>
-        <button type="submit" class="btn btn-warning">Send OTP</button>
+        <button class="btn btn-primary" type="submit">Send OTP</button>
     </form>
 </div>
+
 {% endblock %}

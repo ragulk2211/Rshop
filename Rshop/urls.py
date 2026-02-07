@@ -20,7 +20,6 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mainapp.urls')),
@@ -31,7 +30,9 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     
     
-    path('cart/', include('cart.urls'))
+    path('cart/', include('cart.urls')),
+    path("orders/", include("orders.urls")),
+    path('',include('payments.urls')),
 ]
 
 if settings.DEBUG:

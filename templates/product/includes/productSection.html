@@ -1,3 +1,141 @@
+<style>
+/* ==========================================
+   PRODUCTS SECTION (100% Scoped Safe Styling)
+   Only affects #products-container
+   ========================================== */
+
+#products-container {
+  padding: 35px 22px;
+  background: #f8f9fa;
+  border-radius: 16px;
+}
+
+/* Nice spacing between cards */
+#products-container .row {
+  margin-top: 10px;
+}
+
+/* Each column behaves like equal-height cards */
+#products-container .col-12,
+#products-container .col-sm-6,
+#products-container .col-md-4,
+#products-container .col-lg-3 {
+  display: flex;
+}
+
+/* Make included product card take full width */
+#products-container .col-12 > * {
+  width: 100%;
+}
+
+/* ==========================================
+   Card Hover Effect (Works for any card inside)
+   ========================================== */
+
+#products-container .col-12 > * {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.04);
+
+  overflow: hidden;
+
+  transition: 
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
+}
+
+/* Hover effect */
+#products-container .col-12 > *:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: #0d6efd;
+  box-shadow: 0px 14px 35px rgba(13, 110, 253, 0.15);
+}
+
+/* ==========================================
+   Product Image Height FIX (800px)
+   Only affects images inside product cards
+   ========================================== */
+
+#products-container .col-12 > * img {
+ 
+  width: 100%;
+  height: 400px;            /* ✅ Added 800px height */
+  object-fit: cover;        /* ✅ Keeps image clean without stretching */
+  display: block;
+
+  transition: transform 0.35s ease;
+}
+
+/* Image zoom on hover */
+#products-container .col-12 > *:hover img {
+  transform: scale(1.06);
+}
+
+/* ==========================================
+   Text area styling (safe, clean)
+   ========================================== */
+
+#products-container .col-12 > * h1,
+#products-container .col-12 > * h2,
+#products-container .col-12 > * h3,
+#products-container .col-12 > * h4,
+#products-container .col-12 > * h5 {
+  font-weight: 700;
+  color: #212529;
+}
+
+/* Paragraph / small text */
+#products-container .col-12 > * p,
+#products-container .col-12 > * small,
+#products-container .col-12 > * span {
+  color: #6c757d;
+}
+
+/* ==========================================
+   Empty message style
+   ========================================== */
+
+#products-container .text-center {
+  padding: 45px 12px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.04);
+}
+
+#products-container .text-center p {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: #6c757d;
+}
+
+/* ==========================================
+   Mobile responsive improvements
+   ========================================== */
+
+@media (max-width: 576px) {
+  #products-container {
+    padding: 25px 14px;
+    border-radius: 12px;
+  }
+
+  #products-container .col-12 > *:hover {
+    transform: translateY(-5px) scale(1.01);
+  }
+
+  /* ✅ Optional: Reduce height on mobile (recommended) */
+  #products-container .col-12 > * img {
+    height: 350px;
+  }
+}
+
+
+</style>
+
+
 <section id="products-container" class="container-fluid my-4" data-add-url="{% url 'add_to_cart' %}">
     {% csrf_token %}
 
