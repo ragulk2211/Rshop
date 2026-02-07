@@ -1,3 +1,210 @@
+<style>
+
+/* ==========================================
+   PRODUCT CARD CSS (Scoped - Safe)
+   Only affects .product-card and its children
+   ========================================== */
+
+.product-card {
+  border: 1px solid #e9ecef;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #fff;
+
+  box-shadow: 0px 8px 18px rgba(0, 0, 0, 0.05);
+
+  transition: 
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
+}
+
+/* Smooth premium hover */
+.product-card:hover {
+  transform: translateY(-10px);
+  border-color: #0d6efd;
+  box-shadow: 0px 18px 45px rgba(13, 110, 253, 0.14);
+}
+
+/* ==========================================
+   Image wrapper
+   ========================================== */
+
+.product-card .card-img-top-wrapper {
+  position: relative;
+  overflow: hidden;
+  background: #f8f9fa;
+}
+
+/* Image */
+.product-card .product-thumb {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  display: block;
+
+  transition: transform 0.35s ease;
+}
+
+/* Image zoom on hover */
+.product-card:hover .product-thumb {
+  transform: scale(1.07);
+}
+
+/* Placeholder */
+.product-card .placeholder-img {
+  height: 230px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 15px;
+  font-weight: 600;
+  color: #6c757d;
+
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+}
+
+/* ==========================================
+   Body content
+   ========================================== */
+
+.product-card .card-body {
+  padding: 18px 16px;
+}
+
+/* Title */
+.product-card .product-title {
+  font-size: 18px !important;
+  font-weight: 700;
+  color: #212529;
+
+  margin-bottom: 8px;
+
+  display: -webkit-box;
+  
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Description */
+.product-card .product-desc {
+  font-size: 14px;
+  line-height: 1.4;
+  color: #6c757d;
+
+  margin-bottom: 14px;
+
+  display: -webkit-box;
+  
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ==========================================
+   Price section
+   ========================================== */
+
+.product-card .product-price {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* Old price */
+.product-card .old-price {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Discount badge */
+.product-card .product-discount {
+  font-size: 13px;
+  font-weight: 700;
+  color: #dc3545;
+  background: rgba(220, 53, 69, 0.12);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+/* New price */
+.product-card .new-price {
+  font-size: 17px;
+  font-weight: 800;
+  color: #198754;
+}
+
+/* ==========================================
+   Buttons
+   ========================================== */
+
+.product-card .add-to-cart {
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-weight: 700;
+
+  transition: 
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+/* Button hover */
+.product-card .add-to-cart:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 10px 22px rgba(13, 110, 253, 0.22);
+}
+
+/* Disabled button (out of stock) */
+.product-card button[disabled] {
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-weight: 700;
+  opacity: 0.75;
+}
+
+/* ==========================================
+   Limited stock warning
+   ========================================== */
+
+.product-card .text-warning {
+  margin-top: 10px;
+  margin-bottom: 0;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* ==========================================
+   Stock status (optional styling via data-stock)
+   ========================================== */
+
+.product-card[data-stock="out"] {
+  opacity: 0.92;
+  filter: grayscale(15%);
+}
+
+/* ==========================================
+   Mobile responsive
+   ========================================== */
+
+@media (max-width: 576px) {
+  .product-card .product-thumb,
+  .product-card .placeholder-img {
+    height: 200px;
+  }
+
+  .product-card:hover {
+    transform: translateY(-6px);
+  }
+
+  .product-card .card-body {
+    padding: 16px 14px;
+  }
+}
+
+</style>
+
 <div class="card product-card h-100" data-stock="{% if product.stock > 0 %}in{% else %}out{% endif %}"
     data-product-id="{{product.id}}">
 

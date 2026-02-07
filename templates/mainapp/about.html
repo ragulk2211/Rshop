@@ -1,3 +1,187 @@
+<style>
+/* ==========================================
+   ABOUT PAGE (Light + Clean + Professional)
+   Scoped Safe: Only affects About page IDs
+   ========================================== */
+
+/* Overall spacing fix (no white bar under navbar) */
+#about-hero {
+  margin-top: 0 !important;
+  padding: 55px 18px;
+  border-radius: 18px;
+
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+
+  box-shadow: 0px 10px 28px rgba(0, 0, 0, 0.06);
+}
+
+/* Hero Title */
+#about-title {
+  font-size: 44px;
+  font-weight: 900;
+  color: #212529;
+  letter-spacing: 0.3px;
+}
+
+/* Hero Subtitle */
+#about-subtitle {
+  max-width: 850px;
+  margin: 0 auto;
+
+  font-size: 16px;
+  line-height: 1.7;
+  color: #6c757d;
+}
+
+/* ==========================================
+   MAIN SECTION
+   ========================================== */
+
+#about-main {
+  margin-top: 35px;
+  padding: 10px 8px;
+}
+
+/* Heading */
+#about-heading {
+  font-size: 26px;
+  font-weight: 900;
+  color: #212529;
+  margin-bottom: 14px;
+}
+
+/* Paragraphs */
+#about-description,
+#about-description-secondary {
+  font-size: 15px;
+  line-height: 1.75;
+  color: #495057;
+}
+
+/* ==========================================
+   IMAGE
+   ========================================== */
+
+#about-image {
+  max-width: 360px;
+  border-radius: 18px !important;
+
+  background: #fff;
+  border: 1px solid #e9ecef;
+
+  box-shadow: 0px 10px 26px rgba(0, 0, 0, 0.08);
+
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+
+#about-image:hover {
+  transform: translateY(-6px);
+  box-shadow: 0px 18px 45px rgba(0, 0, 0, 0.12);
+}
+
+/* ==========================================
+   FEATURES
+   ========================================== */
+
+#about-features {
+  margin-top: 35px;
+}
+
+/* Features heading */
+#features-heading {
+  font-size: 26px;
+  font-weight: 900;
+  color: #212529;
+}
+
+/* Feature cards */
+#about-features .card {
+  border: 1px solid #e9ecef;
+  border-radius: 18px;
+  background: #ffffff;
+  overflow: hidden;
+
+  box-shadow: 0px 8px 22px rgba(0, 0, 0, 0.05);
+
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+}
+
+/* Hover effect (light + premium) */
+#about-features .card:hover {
+  transform: translateY(-7px);
+  border-color: rgba(13, 110, 253, 0.30);
+  box-shadow: 0px 18px 45px rgba(0, 0, 0, 0.10);
+}
+
+/* Card body */
+#about-features .card-body {
+  padding: 22px 18px;
+}
+
+/* Feature title */
+#about-features .card-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #212529;
+  margin-bottom: 10px;
+}
+
+/* Feature text */
+#about-features .card-text {
+  font-size: 14px;
+  line-height: 1.65;
+  color: #6c757d;
+  margin: 0;
+}
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+
+#about-footer {
+  margin-top: 40px;
+  padding: 22px 10px;
+  border-top: 1px solid #e9ecef;
+}
+
+#about-footer-text {
+  font-size: 15px;
+  font-weight: 700;
+  color: #212529;
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+@media (max-width: 576px) {
+  #about-hero {
+    padding: 35px 14px;
+    border-radius: 14px;
+  }
+
+  #about-title {
+    font-size: 28px;
+  }
+
+  #about-subtitle {
+    font-size: 14px;
+  }
+
+  #about-heading,
+  #features-heading {
+    font-size: 20px;
+  }
+
+  #about-image {
+    max-width: 260px;
+    border-radius: 14px !important;
+  }
+}
+
+</style>
+
 {% extends 'base/base.html' %}
 {% load static %}
 
@@ -6,13 +190,11 @@ About | Eshop
 {% endblock %}
 
 {% block content %}
-<div class="container my-5" id="about-page">
-
     <!-- Hero Section -->
     <section class="text-center mb-5" id="about-hero">
         <h1 class="fw-bold" id="about-title">About <span class="text-primary">Eshop</span></h1>
         <p class="lead mt-3" id="about-subtitle">
-            Your trusted destination for quality products, great prices, and a seamless shopping experience.
+            Your trusted destination for premium Anime Action Figures, collectibles, and fandom merchandise.
         </p>
     </section>
 
@@ -21,18 +203,18 @@ About | Eshop
         <div class="col-md-6 mb-4 mb-md-0" id="about-text-section">
             <h3 class="mb-3" id="about-heading">Who We Are</h3>
             <p id="about-description">
-                <strong>Eshop</strong> is an e-commerce platform built to make online shopping simple,
-                fast, and reliable. We carefully curate our products to ensure quality and value,
-                while providing a smooth and secure checkout experience.
+                <strong>Eshop</strong> is an anime collectibles store created for true fans.
+                We specialize in high-quality <strong>Anime Action Figures</strong>, character statues,
+                and officially inspired merchandise from popular series.
             </p>
             <p id="about-description-secondary">
-                Whether you're shopping for everyday essentials or something special,
-                Eshop is designed with you in mind.
+                Whether you're a collector, a hardcore anime fan, or buying a gift,
+                we make it easy to find the perfect figure with safe checkout and reliable delivery.
             </p>
         </div>
 
         <div class="col-md-6 text-center" id="about-image-section">
-            <img src="{% static 'images/logo/logo.png' %}"
+            <img src="{% static 'images/denji.jpg' %}"
                  class="img-fluid rounded shadow"
                  alt="About Eshop"
                  id="about-image">
@@ -46,9 +228,9 @@ About | Eshop
             <div class="col-md-4 mb-4" id="feature-1">
                 <div class="card h-100 shadow-sm">
                     <div class="card-body">
-                        <h5 class="card-title">Quality Products</h5>
+                        <h5 class="card-title">Authentic & Premium Figures</h5>
                         <p class="card-text">
-                            Every product is selected with quality and reliability in mind.
+                            We focus on quality, detailing, and carefully curated anime collectibles.
                         </p>
                     </div>
                 </div>
@@ -57,9 +239,9 @@ About | Eshop
             <div class="col-md-4 mb-4" id="feature-2">
                 <div class="card h-100 shadow-sm">
                     <div class="card-body">
-                        <h5 class="card-title">Secure Payments</h5>
+                        <h5 class="card-title">Safe Packaging & Delivery</h5>
                         <p class="card-text">
-                            Your transactions are protected with modern security standards.
+                            Your figures are packed securely to avoid damage and delivered with care.
                         </p>
                     </div>
                 </div>
@@ -68,9 +250,9 @@ About | Eshop
             <div class="col-md-4 mb-4" id="feature-3">
                 <div class="card h-100 shadow-sm">
                     <div class="card-body">
-                        <h5 class="card-title">Fast Support</h5>
+                        <h5 class="card-title">Fast Fan Support</h5>
                         <p class="card-text">
-                            Our support team is always ready to help you.
+                            Need help choosing a figure? Our team is always ready to support you.
                         </p>
                     </div>
                 </div>
@@ -84,7 +266,7 @@ About | Eshop
             Current Page : {{ current_page }}
         </p>
         <p id="about-footer-text">
-            Thank you for choosing <strong>Eshop</strong>. Happy Shopping! 🛒
+            Thank you for choosing <strong>Eshop</strong>. Collect your favorites & power up your shelf! ⚡🛒
         </p>
     </section>
 

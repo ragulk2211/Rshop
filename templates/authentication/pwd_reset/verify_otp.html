@@ -1,17 +1,22 @@
-{% extends "base/base.html" %}
-{% block content %}
-<div class="container mt-5">
-  <h2>Step 2: Enter OTP</h2>
+{% extends 'base/base.html' %}
 
-  {% if error %}
-  <div class="alert alert-danger">
-    {{ error }}
-  </div>
-  {% endif %}
-  <form method="post">
-    {% csrf_token %}
-    <input type="text" name="otp" class="form-control mb-3" placeholder="Enter OTP" required>
-    <button type="submit" class="btn btn-success">Verify OTP</button>
-  </form>
+{% block content %}
+
+<div class="container mt-5">
+    <h2>Verify OTP..!</h2>
+    
+
+    {% if error %}
+    <div class="alert alert-danger">
+        {{ error }}
+    </div>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="otp" class="form-control mb-3" placeholder="Enter OTP" required>
+        <button type="submit" class="btn  btn-primary"> verify OTP</button>
+    </form>
 </div>
+
 {% endblock %}
