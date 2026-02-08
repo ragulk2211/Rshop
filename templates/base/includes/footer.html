@@ -1,3 +1,263 @@
-<footer class="fixed-bottom w-100 text-center bg-dark text-info">
-   &copy; 2026
+<style>
+/* ===========================================
+   Anime Footer (Scoped - Safe)
+   Only affects #anime-footer
+   =========================================== */
+
+#anime-footer {
+  background: linear-gradient(135deg, #0b1220, #0f172a);
+  color: rgba(255, 255, 255, 0.88);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Brand */
+#anime-footer .anime-footer-brand {
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  color: #ffc107;
+  margin-bottom: 12px;
+}
+
+#anime-footer .anime-footer-text {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.70);
+  margin-bottom: 14px;
+}
+
+/* Badge Chips */
+#anime-footer .anime-footer-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#anime-footer .anime-badge-chip {
+  padding: 7px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  border-radius: 50px;
+  background: rgba(255, 193, 7, 0.12);
+  border: 1px solid rgba(255, 193, 7, 0.25);
+  color: #ffc107;
+}
+
+/* Titles */
+#anime-footer .anime-footer-title {
+  font-size: 14px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 16px;
+  color: #ffffff;
+}
+
+/* Links */
+#anime-footer .anime-footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#anime-footer .anime-footer-links li {
+  margin-bottom: 10px;
+}
+
+#anime-footer .anime-footer-links a {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.70);
+  transition: 0.2s ease;
+}
+
+#anime-footer .anime-footer-links a:hover {
+  color: #ffc107;
+  transform: translateX(3px);
+}
+
+/* Newsletter */
+#anime-footer .anime-newsletter {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+#anime-footer .anime-newsletter input {
+  flex: 1;
+  height: 46px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 10px 14px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  outline: none;
+  transition: 0.25s ease;
+}
+
+#anime-footer .anime-newsletter input::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+#anime-footer .anime-newsletter input:focus {
+  border-color: rgba(255, 193, 7, 0.55);
+  box-shadow: 0px 0px 0px 4px rgba(255, 193, 7, 0.12);
+}
+
+/* Button */
+#anime-footer .anime-newsletter button {
+  height: 46px;
+  padding: 0px 18px;
+  border-radius: 14px;
+  border: none;
+  background: #ffc107;
+  color: #111827;
+  font-weight: 900;
+  font-size: 14px;
+  transition: 0.25s ease;
+}
+
+#anime-footer .anime-newsletter button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 14px 28px rgba(255, 193, 7, 0.25);
+}
+
+#anime-footer .anime-footer-mini {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: 10px;
+}
+
+/* Divider */
+#anime-footer .anime-footer-line {
+  margin: 30px 0 18px;
+  border-color: rgba(255, 255, 255, 0.10);
+}
+
+/* Bottom Row */
+#anime-footer .anime-footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* Social */
+#anime-footer .anime-footer-social {
+  display: flex;
+  gap: 14px;
+}
+
+#anime-footer .anime-footer-social a {
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.75);
+  transition: 0.2s ease;
+}
+
+#anime-footer .anime-footer-social a:hover {
+  color: #ffc107;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  #anime-footer .anime-newsletter {
+    flex-direction: column;
+  }
+
+  #anime-footer .anime-newsletter button {
+    width: 100%;
+  }
+}
+
+</style>
+
+<footer id="anime-footer" class="pt-5 pb-4">
+  <div class="container">
+
+    <div class="row g-4">
+
+      <!-- Brand -->
+      <div class="col-lg-4 col-md-6">
+        <h4 class="anime-footer-brand">OtakuFigures</h4>
+        <p class="anime-footer-text">
+          Premium anime action figures, limited editions, and collectible statues.
+          Fast shipping • Secure payments • Best quality.
+        </p>
+
+        <div class="anime-footer-badges">
+          <span class="anime-badge-chip">100% Original</span>
+          <span class="anime-badge-chip">Secure Payment</span>
+          <span class="anime-badge-chip">Fast Delivery</span>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-lg-2 col-md-6">
+        <h6 class="anime-footer-title">Quick Links</h6>
+        <ul class="anime-footer-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Shop</a></li>
+          <li><a href="#">New Arrivals</a></li>
+          <li><a href="#">Best Sellers</a></li>
+          <li><a href="#">Offers</a></li>
+        </ul>
+      </div>
+
+      <!-- Support -->
+      <div class="col-lg-3 col-md-6">
+        <h6 class="anime-footer-title">Support</h6>
+        <ul class="anime-footer-links">
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">Shipping Policy</a></li>
+          <li><a href="#">Return & Refund</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="col-lg-3 col-md-6">
+        <h6 class="anime-footer-title">Join Our Newsletter</h6>
+        <p class="anime-footer-text">
+          Get updates on limited edition figures & exclusive discounts.
+        </p>
+
+        <form class="anime-newsletter">
+          <input type="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+
+        <p class="anime-footer-mini">
+          No spam. Only anime goodness 😎🔥
+        </p>
+      </div>
+
+    </div>
+
+    <hr class="anime-footer-line">
+
+    <div class="anime-footer-bottom">
+      <p class="m-0">
+        © 2026 <strong>OtakuFigures</strong>. All Rights Reserved.
+      </p>
+
+      <div class="anime-footer-social">
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="YouTube">YouTube</a>
+        <a href="#" aria-label="Twitter">Twitter</a>
+      </div>
+    </div>
+
+  </div>
 </footer>

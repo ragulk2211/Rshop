@@ -6,6 +6,174 @@
 
 {% block content %}
 
+<style>
+
+/* ==========================================
+   SELECT ADDRESS PAGE (Scoped - Safe)
+   No HTML changes required
+   ========================================== */
+
+body form[method="post"] {
+  max-width: 900px;
+  margin: 70px auto 18px;
+  padding: 22px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 18px;
+  box-shadow: 0px 14px 40px rgba(0, 0, 0, 0.07);
+}
+
+/* Title */
+body form[method="post"] h3 {
+  margin: 0 0 18px;
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: 0.3px;
+}
+
+/* Remove default UL styling */
+body form[method="post"] ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px;
+  display: grid;
+  gap: 14px;
+}
+
+/* Each address row */
+body form[method="post"] ul li {
+  margin: 0;
+}
+
+/* Label as a clickable card */
+body form[method="post"] ul li label {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  cursor: pointer;
+
+  padding: 16px 16px;
+  border-radius: 16px;
+
+  background: linear-gradient(135deg, #ffffff, #f8fafc);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0px 8px 18px rgba(0, 0, 0, 0.05);
+
+  font-size: 1rem;
+  font-weight: 600;
+  color: #334155;
+
+  transition: all 0.25s ease;
+}
+
+/* Hover effect */
+body form[method="post"] ul li label:hover {
+  transform: translateY(-2px);
+  border-color: rgba(37, 99, 235, 0.35);
+  box-shadow: 0px 14px 28px rgba(37, 99, 235, 0.10);
+}
+
+/* Radio button */
+body form[method="post"] ul li label input[type="radio"] {
+  margin-top: 4px;
+  transform: scale(1.15);
+  cursor: pointer;
+}
+
+/* When selected: highlight the whole card */
+body form[method="post"] ul li label:has(input[type="radio"]:checked) {
+  border: 1px solid rgba(37, 99, 235, 0.55);
+  background: rgba(37, 99, 235, 0.06);
+  box-shadow: 0px 14px 28px rgba(37, 99, 235, 0.14);
+}
+
+/* ==========================================
+   BUTTONS (Smaller width + centered)
+   ========================================== */
+
+/* Select Address button */
+body form[method="post"] button[type="submit"] {
+  width: auto;                 /* IMPORTANT */
+  min-width: 220px;            /* controls button width */
+  max-width: 320px;
+
+  display: block;
+  margin: 18px auto 0;         /* centers button */
+
+  padding: 9px 16px;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 0.2px;
+
+  box-shadow: 0px 10px 18px rgba(37, 99, 235, 0.12);
+  transition: all 0.25s ease;
+}
+
+/* Hover */
+body form[method="post"] button[type="submit"]:hover {
+  transform: translateY(-1px);
+  box-shadow: 0px 16px 28px rgba(37, 99, 235, 0.18);
+}
+
+/* Add address button */
+body form[method="post"] + a.btn.btn-secondary {
+  width: auto;                 /* IMPORTANT */
+  min-width: 220px;
+  max-width: 320px;
+
+  margin: 12px auto 40px;      /* centers button */
+  display: block;
+  text-align: center;
+
+  padding: 9px 16px;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 0.2px;
+
+  box-shadow: 0px 10px 18px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease;
+}
+
+/* Hover */
+body form[method="post"] + a.btn.btn-secondary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0px 16px 28px rgba(0, 0, 0, 0.12);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body form[method="post"] {
+    margin: 18px 12px 14px;
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  body form[method="post"] h3 {
+    font-size: 1.25rem;
+  }
+
+  body form[method="post"] ul li label {
+    padding: 14px;
+    border-radius: 14px;
+    font-size: 0.98rem;
+  }
+
+  body form[method="post"] button[type="submit"],
+  body form[method="post"] + a.btn.btn-secondary {
+    min-width: 180px;
+    max-width: 260px;
+    font-size: 0.92rem;
+    padding: 9px 14px;
+  }
+}
+</style>
+
+
+
 <form method="post">
     {% csrf_token %}
     <h3>Select an Address</h3>

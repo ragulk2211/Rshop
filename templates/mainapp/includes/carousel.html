@@ -1,233 +1,242 @@
 <style>
-/* ==========================================
+  /* ==========================================
    HERO CAROUSEL (Scoped - Safe)
    Only affects #heroCarousel and hero-* classes
    ========================================== */
 
-.hero-carousel {
-  
+  .hero-carousel {
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0px 18px 45px rgba(0, 0, 0, 0.10);
+  }
 
-  overflow: hidden;
-  position: relative;
-  box-shadow: 0px 18px 45px rgba(0, 0, 0, 0.10);
- 
-}
+  /* Slide wrapper */
+  .hero-carousel .hero-slide {
+    position: relative;
+    overflow: hidden;
+  }
 
-/* Slide wrapper */
-.hero-carousel .hero-slide {
-  position: relative;
-}
+  /* ==========================================
+   Hero Image (Zoom In + Zoom Out)
+   ========================================== */
 
-/* Hero Image */
-.hero-carousel .hero-img {
-  height: 460px;
-  object-fit: cover;
-  filter: contrast(1.05) saturate(1.05);
-}
+  .hero-carousel .hero-img {
+    height: 460px;
+    width: 100%;
+    object-fit: cover;
+    filter: contrast(1.05) saturate(1.05);
 
-/* Dark overlay for readability */
-.hero-carousel .carousel-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.60) 0%,
-    rgba(0, 0, 0, 0.35) 45%,
-    rgba(0, 0, 0, 0.10) 100%
-  );
-  z-index: 1;
-}
+    /* smooth animation */
+    transform: scale(1);
+    transition: transform 6s ease-in-out;
+  }
 
-/* Caption box */
-.hero-carousel .hero-caption {
-  position: absolute;
-  left: 6%;
-  bottom: 18%;
-  text-align: left;
+  /* ✅ Zoom effect only for active slide */
+  .hero-carousel .carousel-item.active .hero-img {
+    transform: scale(1.12);
+  }
 
-  max-width: 620px;
-  z-index: 2;
+  /* ==========================================
+   Dark overlay for readability
+   ========================================== */
 
-  padding: 18px 18px;
-  border-radius: 16px;
+  .hero-carousel .carousel-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg,
+        rgba(0, 0, 0, 0.60) 0%,
+        rgba(0, 0, 0, 0.35) 45%,
+        rgba(0, 0, 0, 0.10) 100%);
+    z-index: 1;
+  }
 
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  /* ==========================================
+   Caption box
+   ========================================== */
 
-  border: 1px solid rgba(255, 255, 255, 0.15);
-}
+  .hero-carousel .hero-caption {
+    position: absolute;
+    left: 6%;
+    bottom: 18%;
+    text-align: left;
 
-/* Title */
-.hero-carousel .hero-title {
-  font-size: 38px;
-  font-weight: 800;
-  line-height: 1.15;
-  margin-bottom: 10px;
-  color: #ffffff;
-  text-shadow: 0px 10px 28px rgba(0, 0, 0, 0.35);
-}
+    max-width: 620px;
+    z-index: 2;
 
-/* Description */
-.hero-carousel .hero-desc {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.55;
-  margin: 0;
-  color: rgba(255, 255, 255, 0.90);
-}
+    padding: 18px 18px;
+    border-radius: 16px;
 
-/* ==========================================
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  /* Title */
+  .hero-carousel .hero-title {
+    font-size: 38px;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 10px;
+    color: #ffffff;
+    text-shadow: 0px 10px 28px rgba(0, 0, 0, 0.35);
+  }
+
+  /* Description */
+  .hero-carousel .hero-desc {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.55;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.90);
+  }
+
+  /* ==========================================
    Indicators (dots)
    ========================================== */
 
-.hero-carousel .hero-indicators button {
-  width: 12px;
-  height: 12px;
-  border-radius: 999px;
-
-  border: 0;
-  background: rgba(255, 255, 255, 0.45);
-  margin: 0 5px;
-
-  transition: all 0.25s ease;
-}
-
-.hero-carousel .hero-indicators button.active {
-  width: 32px;
-  background: #0d6efd;
-  box-shadow: 0px 10px 24px rgba(13, 110, 253, 0.35);
-}
-
-/* ==========================================
-   Controls (prev/next buttons)
-   ========================================== */
-
-.hero-carousel .hero-control-prev,
-.hero-carousel .hero-control-next {
-  width: 60px;
-  opacity: 1;
-}
-
-/* icon background */
-.hero-carousel .carousel-control-prev-icon,
-.hero-carousel .carousel-control-next-icon {
-  width: 42px;
-  height: 42px;
-
-  border-radius: 999px;
-  background-color: rgba(255, 255, 255, 0.18);
-
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.18);
-
-  transition: transform 0.25s ease, background 0.25s ease;
-}
-
-/* hover */
-.hero-carousel .hero-control-prev:hover .carousel-control-prev-icon,
-.hero-carousel .hero-control-next:hover .carousel-control-next-icon {
-  transform: scale(1.08);
-  background-color: rgba(255, 255, 255, 0.30);
-}
-
-/* ==========================================
-   Slide animation (smooth fade effect)
-   ========================================== */
-
-.hero-carousel .carousel-item {
-  transition: transform 0.7s ease-in-out;
-}
-
-/* ==========================================
-   Responsive (Mobile)
-   ========================================== */
-
-@media (max-width: 992px) {
-  .hero-carousel .hero-img {
-    height: 380px;
-  }
-
-  .hero-carousel .hero-title {
-    font-size: 30px;
-  }
-
-  .hero-carousel .hero-caption {
-    max-width: 520px;
-    left: 5%;
-    bottom: 14%;
-  }
-}
-
-@media (max-width: 576px) {
-  .hero-carousel {
-    border-radius: 14px;
-  }
-
-  .hero-carousel .hero-img {
-    height: 300px;
-  }
-
-  .hero-carousel .hero-caption {
-    left: 4%;
-    right: 4%;
-    bottom: 10%;
-    max-width: 100%;
-    padding: 14px 14px;
-  }
-
-  .hero-carousel .hero-title {
-    font-size: 22px;
-  }
-
-  .hero-carousel .hero-desc {
-    font-size: 14px;
+  .hero-carousel .hero-indicators button {
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+    border: 0;
+    background: rgba(255, 255, 255, 0.45);
+    margin: 0 5px;
+    transition: all 0.25s ease;
   }
 
   .hero-carousel .hero-indicators button.active {
-    width: 26px;
+    width: 32px;
+    background: #0d6efd;
+    box-shadow: 0px 10px 24px rgba(13, 110, 253, 0.35);
   }
-}
 
+  /* ==========================================
+   Controls (prev/next buttons)
+   ========================================== */
+
+  .hero-carousel .hero-control-prev,
+  .hero-carousel .hero-control-next {
+    width: 60px;
+    opacity: 1;
+  }
+
+  /* icon background */
+  .hero-carousel .carousel-control-prev-icon,
+  .hero-carousel .carousel-control-next-icon {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 999px;
+    background-color: rgba(255, 255, 255, 0.18);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.18);
+
+    transition: transform 0.25s ease, background 0.25s ease;
+  }
+
+  /* hover */
+  .hero-carousel .hero-control-prev:hover .carousel-control-prev-icon,
+  .hero-carousel .hero-control-next:hover .carousel-control-next-icon {
+    transform: scale(1.08);
+    background-color: rgba(255, 255, 255, 0.30);
+  }
+
+  /* ==========================================
+   Slide animation (smooth fade effect)
+   ========================================== */
+
+  .hero-carousel .carousel-item {
+    transition: transform 0.7s ease-in-out;
+  }
+
+  /* ==========================================
+   Responsive (Mobile)
+   ========================================== */
+
+  @media (max-width: 992px) {
+    .hero-carousel .hero-img {
+      height: 380px;
+    }
+
+    .hero-carousel .hero-title {
+      font-size: 30px;
+    }
+
+    .hero-carousel .hero-caption {
+      max-width: 520px;
+      left: 5%;
+      bottom: 14%;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .hero-carousel .hero-img {
+      height: 300px;
+    }
+
+    .hero-carousel .hero-caption {
+      left: 4%;
+      right: 4%;
+      bottom: 10%;
+      max-width: 100%;
+      padding: 14px 14px;
+    }
+
+    .hero-carousel .hero-title {
+      font-size: 22px;
+    }
+
+    .hero-carousel .hero-desc {
+      font-size: 14px;
+    }
+
+    .hero-carousel .hero-indicators button.active {
+      width: 26px;
+    }
+  }
 </style>
 
 
 {% load static %}
 
 <div id="heroCarousel" class="carousel slide hero-carousel" data-bs-ride="carousel">
-    <div class="carousel-indicators hero-indicators">
-        {% for image in carousel_images %}
-        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="{{ forloop.counter0 }}" 
-            class="{% if forloop.first %}active{% endif %}" 
-            aria-current="{% if forloop.first %}true{% endif %}" 
-            aria-label="Slide {{ forloop.counter }}">
-        </button>
-        {% endfor %}
-    </div>
-
-    <div class="carousel-inner">
-        {% for image in carousel_images %}
-        <div class="carousel-item {% if forloop.first %} active {% endif %} hero-slide">
-            <img src="{{ image.img.url }}" class="d-block w-100 hero-img" alt="{{ image.title }}">
-            <div class="carousel-overlay"></div>
-            <div class="carousel-caption hero-caption">
-                <h2 class="hero-title">{{ image.title }}</h2>
-                <p class="hero-desc">{{ image.caption }}</p>
-            </div>
-        </div>
-        {% endfor %} 
-    </div>
-
-    <!-- controls -->
-    <button class="carousel-control-prev hero-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
+  <div class="carousel-indicators hero-indicators">
+    {% for image in carousel_images %}
+    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="{{ forloop.counter0 }}"
+      class="{% if forloop.first %}active{% endif %}" aria-current="{% if forloop.first %}true{% endif %}"
+      aria-label="Slide {{ forloop.counter }}">
     </button>
-    <button class="carousel-control-next hero-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
+    {% endfor %}
+  </div>
+
+  <div class="carousel-inner">
+    {% for image in carousel_images %}
+    <div class="carousel-item {% if forloop.first %} active {% endif %} hero-slide">
+      <img src="{{ image.img.url }}" class="d-block w-100 hero-img" alt="{{ image.title }}">
+      <div class="carousel-overlay"></div>
+      <div class="carousel-caption hero-caption">
+        <h2 class="hero-title">{{ image.title }}</h2>
+        <p class="hero-desc">{{ image.caption }}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- controls -->
+  <button class="carousel-control-prev hero-control-prev" type="button" data-bs-target="#heroCarousel"
+    data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next hero-control-next" type="button" data-bs-target="#heroCarousel"
+    data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
 </div>

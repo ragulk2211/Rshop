@@ -90,15 +90,92 @@ Product Details
     #productCarousel{
         padding-top: 30px;
     }
-    .image-overlay {
-        position: absolute;
-        top: 12px;
-        left: 12px;
-        right: 12px;
-        display: flex;
-        justify-content: space-between;
-        z-index: 10;
-    }
+    .image-card,
+.product-image-box,
+.image-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.image-card img,
+.product-image-box img,
+.image-wrapper img {
+  position: relative;
+  z-index: 1;
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  padding: 14px;
+  opacity: 0;
+  transition: 0.25s ease;
+
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), transparent 55%);
+  border-radius: 16px;
+
+  /* overlay itself doesn't block */
+  pointer-events: none;
+
+  /* IMPORTANT */
+  z-index: 10;
+}
+
+.image-card:hover .image-overlay,
+.product-image-box:hover .image-overlay,
+.image-wrapper:hover .image-overlay {
+  opacity: 1;
+}
+
+/* Buttons */
+.image-overlay a.edit-btn,
+.image-overlay a.delete-btn {
+  position: absolute;
+  top: 14px;
+
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 10px 16px;
+  border-radius: 12px;
+
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(10px);
+  transition: 0.2s ease;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.25);
+
+  /* IMPORTANT */
+  pointer-events: auto;
+  z-index: 20;
+}
+
+/* Edit -> Top Left */
+.image-overlay a.edit-btn {
+  left: 14px;
+  background: rgba(255, 193, 7, 0.92);
+  color: #111;
+}
+
+/* Delete -> Top Right */
+.image-overlay a.delete-btn {
+  right: 14px;
+  background: rgba(220, 53, 69, 0.92);
+  color: #fff;
+}
+
+/* Hover effect */
+.image-overlay a.edit-btn:hover,
+.image-overlay a.delete-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+}
+
 
     .image-overlay a {
         background: white;

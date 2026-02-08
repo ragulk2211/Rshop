@@ -6,6 +6,8 @@ from django.contrib import messages
 from cart.models import CartItem
 from .models import Order, OrderDetails, Address
 from .forms import AddressForm, OrderForm
+from django.db import IntegrityError
+
 
 @login_required
 def create_order(request):
@@ -68,21 +70,34 @@ def order_detail(request, order_id):
 @login_required
 def add_address(request):
     """Allow the user to add a new address."""
-    if request.method == 'POST':
-        form = AddressForm(request.POST)
+    next_url = request.GET.get("next", "homepage")
+
+    if request.method == "POST":
+        # IMPORTANT: pass user into form
+        form = AddressForm(request.POST, initial={"user": request.user})
+
         if form.is_valid():
             address = form.save(commit=False)
             address.user = request.user
+
             # Set default address if it's the first one
             if not Address.objects.filter(user=request.user).exists():
                 address.is_default = True
-            address.save()
-            # Redirect to the referring page
-            next_url = request.GET.get('next', 'homepage')
-            return redirect(next_url)  # Redirect to the referring page (e.g., select_address)
+
+            # Prevent crash if duplicate
+            try:
+                address.save()
+            except IntegrityError:
+                form.add_error(None, "This address already exists.")
+                return render(request, "orders/add_address.html", {"form": form})
+
+            return redirect(next_url)
+
     else:
-        form = AddressForm()
-    return render(request, 'orders/add_address.html', {'form': form})
+        form = AddressForm(initial={"user": request.user})
+
+    return render(request, "orders/add_address.html", {"form": form})
+
 
 @login_required
 def select_address_for_order(request, order_id):

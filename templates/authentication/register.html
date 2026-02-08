@@ -5,6 +5,10 @@ Login
 
 {% block content %}
 
+
+
+
+
 <section class="p-5">
 <div class="container ">
     <div class="row justify-content-center">
@@ -25,7 +29,7 @@ Login
                         {% for field in form %}
                             {% include 'base/includes/basic_form_field.html' %}
                         {% endfor %}
-                        <button type="submit" class="btn btn-warning w-100">Register</button>
+                        <button type="submit" class="btn btn-warning w-100 ">Register</button>
                         <p class="text-center mt-3 mb-0">
                             Don't have an account ? Sign up 
                             <a href="{% url 'signup' %}">here</a>

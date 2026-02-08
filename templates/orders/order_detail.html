@@ -6,6 +6,7 @@ Order Details - Order #{{ order.id }}
 {% endblock %}
 
 {% block content %}
+
 <div class="container mt-4">
     <h2 class="text-center">Order Details</h2>
     <hr>
@@ -66,7 +67,7 @@ Order Details - Order #{{ order.id }}
                     {% for detail in order.order_details.all %}
                     <tr>
                         <td>
-                            <a href="{% url 'prod_details' detail.order_item.id %}">
+                            <a href="{% url 'product_details' detail.order_item.id %}">
                                 {{ detail.order_item.name }}
                             </a>
                         </td>

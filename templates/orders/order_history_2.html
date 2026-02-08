@@ -6,6 +6,197 @@ Order History
 {% endblock %}
 
 {% block content %}
+
+<style>
+/* ==========================================
+   ORDER HISTORY PAGE (Scoped - Safe)
+   No HTML changes required
+   Only affects: .container.mt-4 in this page
+   ========================================== */
+
+body .container.mt-4 {
+  max-width: 1100px;
+}
+
+/* Title */
+body .container.mt-4 > h2 {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #0f172a;
+  margin-bottom: 10px;
+}
+
+/* Divider */
+body .container.mt-4 > hr {
+  border: none;
+  height: 1px;
+  background: rgba(15, 23, 42, 0.12);
+  margin-bottom: 24px;
+}
+
+/* Card */
+body .container.mt-4 .card.mb-4 {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 18px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0px 18px 45px rgba(0, 0, 0, 0.07);
+  transition: all 0.25s ease;
+}
+
+body .container.mt-4 .card.mb-4:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 26px 60px rgba(0, 0, 0, 0.10);
+}
+
+/* Header */
+body .container.mt-4 .card-header.bg-secondary {
+  background: linear-gradient(135deg, #0f172a, #1f2937) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  padding: 14px 18px;
+  font-weight: 900;
+  font-size: 14px;
+}
+
+/* Body */
+body .container.mt-4 .card-body {
+  padding: 18px 18px;
+}
+
+body .container.mt-4 .card-body p {
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #334155;
+}
+
+body .container.mt-4 .card-body p strong {
+  font-weight: 900;
+  color: #0f172a;
+}
+
+/* Ordered items block */
+body .container.mt-4 .ordered-items {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+/* Each ordered item */
+body .container.mt-4 .ordered-items .d-flex.align-items-center {
+  padding: 12px 12px;
+  border-radius: 16px;
+  transition: 0.2s ease;
+}
+
+body .container.mt-4 .ordered-items .d-flex.align-items-center:hover {
+  background: rgba(13, 110, 253, 0.04);
+}
+
+/* Thumbnail */
+body .container.mt-4 img.img-thumbnail {
+  border-radius: 16px !important;
+  border: 1px solid rgba(15, 23, 42, 0.10) !important;
+  box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.10);
+}
+
+/* Product link */
+body .container.mt-4 .item-details a {
+  font-weight: 900;
+  color: #0f172a !important;
+  transition: 0.2s ease;
+}
+
+body .container.mt-4 .item-details a:hover {
+  color: #0d6efd !important;
+  text-decoration: underline !important;
+}
+
+/* Item details text */
+body .container.mt-4 .item-details p {
+  margin-bottom: 6px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #475569;
+}
+
+/* Inner hr */
+body .container.mt-4 .ordered-items hr {
+  border: none;
+  height: 1px;
+  background: rgba(15, 23, 42, 0.08);
+  margin: 12px 0;
+}
+
+/* Footer */
+body .container.mt-4 .card-footer {
+  background: #f8fafc;
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  padding: 14px 18px;
+}
+
+/* Buttons */
+body .container.mt-4 .btn {
+  border-radius: 14px !important;
+  font-weight: 900 !important;
+  padding: 9px 14px !important;
+  transition: all 0.25s ease;
+}
+
+body .container.mt-4 .btn:hover {
+  transform: translateY(-1px);
+}
+
+/* Banner */
+body .container.mt-4 .banner {
+  margin: 30px auto 60px;
+  text-align: center;
+}
+
+body .container.mt-4 .banner a.btn {
+  padding: 12px 22px !important;
+  font-size: 15px;
+  border-radius: 16px !important;
+}
+
+/* Empty state */
+body .container.mt-4 .alert.alert-warning {
+  border-radius: 18px;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  background: rgba(245, 158, 11, 0.08);
+  font-weight: 800;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  body .container.mt-4 {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  body .container.mt-4 > h2 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  body .container.mt-4 .card-header.bg-secondary {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start !important;
+  }
+
+  body .container.mt-4 .ordered-items .d-flex.align-items-center {
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+
+  body .container.mt-4 .btn {
+    width: 100%;
+  }
+}
+</style>
+
+
 <div class="container mt-4">
     <h2>Order History</h2>
     <hr>

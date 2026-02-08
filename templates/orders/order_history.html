@@ -5,6 +5,184 @@ Order History
 {% endblock %}
 
 {% block content %}
+<style>
+/* ==========================================
+   ORDER HISTORY PAGE (Scoped - Safe)
+   No HTML changes required
+   Only affects this template
+   ========================================== */
+
+/* Scope using body + h1 + table combination */
+body h1:first-of-type {
+  max-width: 1100px;
+  margin: 30px auto 18px;
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 0.3px;
+  color: #0f172a;
+}
+
+/* Table wrapper look */
+body h1:first-of-type + table.table {
+  max-width: 1100px;
+  margin: 0 auto 40px;
+
+  background: #ffffff;
+  border-radius: 18px;
+  overflow: hidden;
+
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0px 18px 45px rgba(0, 0, 0, 0.08);
+}
+
+/* Table header */
+body h1:first-of-type + table.table thead th {
+  background: linear-gradient(135deg, #0f172a, #111827);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.35px;
+  text-transform: uppercase;
+
+  padding: 14px 14px;
+  border: none !important;
+}
+
+/* Table rows */
+body h1:first-of-type + table.table tbody td {
+  padding: 14px 14px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #334155;
+
+  border-color: rgba(15, 23, 42, 0.06) !important;
+  vertical-align: middle;
+}
+
+/* Row hover */
+body h1:first-of-type + table.table tbody tr {
+  transition: all 0.2s ease;
+}
+
+body h1:first-of-type + table.table tbody tr:hover {
+  background: rgba(13, 110, 253, 0.04);
+}
+
+/* Order ID style */
+body h1:first-of-type + table.table tbody td:first-child {
+  font-weight: 900;
+  color: #0f172a;
+}
+
+/* Status badge look */
+body h1:first-of-type + table.table tbody td:nth-child(3) {
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.4px;
+}
+
+
+
+/* Buttons in actions */
+body h1:first-of-type + table.table tbody td:last-child {
+  white-space: nowrap;
+}
+
+/* Buttons */
+body h1:first-of-type + table.table .btn {
+  border-radius: 12px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.2px;
+  padding: 7px 12px !important;
+  transition: all 0.2s ease;
+}
+
+/* Hover */
+body h1:first-of-type + table.table .btn:hover {
+  transform: translateY(-1px);
+}
+
+/* Pay Now */
+body h1:first-of-type + table.table .btn-success {
+  box-shadow: 0px 12px 22px rgba(34, 197, 94, 0.18);
+}
+
+/* View Details */
+body h1:first-of-type + table.table .btn-info {
+  box-shadow: 0px 12px 22px rgba(6, 182, 212, 0.18);
+}
+
+/* Empty state */
+body p:has(+ a.btn.btn-primary) {
+  max-width: 900px;
+  margin: 30px auto 14px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #475569;
+  text-align: center;
+}
+
+/* Start shopping button */
+body a.btn.btn-primary {
+  display: block;
+  max-width: 260px;
+  margin: 0 auto 60px;
+  border-radius: 14px !important;
+  font-weight: 900 !important;
+  padding: 12px 16px !important;
+  box-shadow: 0px 18px 40px rgba(13, 110, 253, 0.20);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  body h1:first-of-type {
+    margin: 20px 12px 14px;
+    font-size: 1.6rem;
+    text-align: center;
+  }
+
+  body h1:first-of-type + table.table {
+    margin: 0 12px 35px;
+    border-radius: 16px;
+  }
+
+  body h1:first-of-type + table.table thead {
+    display: none; /* Mobile: hide header */
+  }
+
+  body h1:first-of-type + table.table,
+  body h1:first-of-type + table.table tbody,
+  body h1:first-of-type + table.table tr,
+  body h1:first-of-type + table.table td {
+    display: block;
+    width: 100%;
+  }
+
+  body h1:first-of-type + table.table tbody tr {
+    padding: 14px;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  }
+
+  body h1:first-of-type + table.table tbody td {
+    border: none !important;
+    padding: 8px 0;
+    font-size: 14px;
+  }
+
+  body h1:first-of-type + table.table tbody td:last-child {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  body h1:first-of-type + table.table .btn {
+    width: 100%;
+  }
+}
+</style>
+
 <h1>Order History</h1>
 
 {% if orders %}

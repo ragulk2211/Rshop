@@ -1,10 +1,283 @@
-<header >
-    <nav  id="main-navbar" class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+{% load static %}
+
+<style>
+/* ==========================================
+   Main Navbar (Scoped - Safe)
+   Only affects #main-navbar
+   ========================================== */
+
+/* ==========================================
+   NAVBAR SEARCH BAR (Scoped - Safe)
+   Only affects: #main-navbar search form
+   ========================================== */
+
+#main-navbar form.d-flex.flex-grow-1.mx-lg-3 {
+    max-width: 520px;
+    width: 100%;
+}
+
+/* Input */
+#main-navbar form.d-flex.flex-grow-1.mx-lg-3 input.form-control {
+    height: 46px;
+    border-radius: 16px 0 0 16px !important;
+
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.07);
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+
+    padding-left: 16px;
+
+    transition: 0.25s ease;
+}
+
+/* Placeholder */
+#main-navbar form.d-flex.flex-grow-1.mx-lg-3 input.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.55);
+    font-weight: 600;
+}
+
+/* Focus effect */
+#main-navbar form.d-flex.flex-grow-1.mx-lg-3 input.form-control:focus {
+    outline: none;
+    border-color: rgba(255, 193, 7, 0.65);
+    box-shadow: 0px 0px 0px 4px rgba(255, 193, 7, 0.14);
+    background: rgba(255, 255, 255, 0.10);
+}
+
+/* Button */
+#main-navbar form.d-flex.flex-grow-1.mx-lg-3 button.btn.btn-warning {
+    height: 46px;
+    min-width: 56px;
+
+    border-radius: 0 16px 16px 0 !important;
+
+    border: none !important;
+    font-weight: 900;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0px 12px 28px rgba(255, 193, 7, 0.20);
+    transition: 0.25s ease;
+}
+
+/* Hover */
+#main-navbar form.d-flex.flex-grow-1.mx-lg-3 button.btn.btn-warning:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 18px 40px rgba(255, 193, 7, 0.28);
+}
+
+/* Search icon */
+#main-navbar form.d-flex.flex-grow-1.mx-lg-3 button.btn.btn-warning i {
+    font-size: 18px;
+}
+
+
+#main-navbar {
+    padding: 12px 14px;
+    background: linear-gradient(135deg, #0b1220, #0f172a) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0px 18px 45px rgba(0, 0, 0, 0.18);
+
+    /* FIXED HEADER */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+}
+
+/* Logo Image */
+#main-navbar .nav-logo {
+    height: 90px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+}
+
+/* IMPORTANT: Push page content below fixed navbar */
+
+
+/* ✅ FIX GAP: Remove extra top margin from first element after navbar */
+header + * {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* If carousel is inside main/container, fix that too */
+header + main,
+header + section,
+header + div {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Brand */
+#main-navbar .navbar-brand {
+    font-size: 22px;
+    font-weight: 900 !important;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+}
+
+/* Nav links */
+#main-navbar .nav-link {
+    font-size: 14px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.75) !important;
+    padding: 10px 14px;
+    border-radius: 12px;
+    transition: 0.25s ease;
+}
+
+#main-navbar .nav-link:hover {
+    color: #ffc107 !important;
+    background: rgba(255, 193, 7, 0.10);
+}
+
+/* Active page link */
+#main-navbar .nav-link.active {
+    color: #111827 !important;
+    background: #ffc107;
+    font-weight: 900;
+}
+
+/* Dropdown menu */
+#main-navbar .dropdown-menu {
+    border-radius: 16px;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0px 18px 45px rgba(0, 0, 0, 0.18);
+}
+
+#main-navbar .dropdown-item {
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 12px;
+    padding: 10px 12px;
+    transition: 0.2s ease;
+}
+
+#main-navbar .dropdown-item:hover {
+    background: rgba(255, 193, 7, 0.14);
+    color: #111827;
+}
+
+/* Search form */
+#main-navbar form input.form-control {
+    height: 44px;
+    border-radius: 14px 0 0 14px !important;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.06);
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.25s ease;
+}
+
+#main-navbar form input.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+#main-navbar form input.form-control:focus {
+    outline: none;
+    border-color: rgba(255, 193, 7, 0.55);
+    box-shadow: 0px 0px 0px 4px rgba(255, 193, 7, 0.12);
+}
+
+/* Search button */
+#main-navbar form button.btn-warning {
+    height: 44px;
+    border-radius: 0 14px 14px 0 !important;
+    font-weight: 900;
+    border: none;
+    transition: 0.25s ease;
+}
+
+#main-navbar form button.btn-warning:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 14px 28px rgba(255, 193, 7, 0.25);
+}
+
+/* Cart badge */
+#main-navbar .cart-badge {
+    position: absolute;
+    top: 2px;
+    right: 0px;
+    min-width: 20px;
+    height: 20px;
+    padding: 0px 6px;
+    border-radius: 50px;
+    background: #ffc107;
+    color: #111827;
+    font-size: 12px;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #0f172a;
+}
+
+/* Toggler */
+#main-navbar .navbar-toggler {
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 8px 10px;
+}
+
+#main-navbar .navbar-toggler:focus {
+    box-shadow: 0px 0px 0px 4px rgba(255, 193, 7, 0.12);
+}
+
+/* Mobile spacing fix */
+@media (max-width: 992px) {
+    body {
+        padding-top: 95px;
+    }
+
+    #main-navbar form {
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
+
+    #main-navbar .nav-link {
+        padding: 10px 12px;
+    }
+}
+
+@media (max-width: 992px) {
+    #main-navbar form.d-flex.flex-grow-1.mx-lg-3 {
+        max-width: 100%;
+    }
+
+    #main-navbar form.d-flex.flex-grow-1.mx-lg-3 input.form-control {
+        height: 44px;
+        border-radius: 14px 0 0 14px !important;
+    }
+
+    #main-navbar form.d-flex.flex-grow-1.mx-lg-3 button.btn.btn-warning {
+        height: 44px;
+        border-radius: 0 14px 14px 0 !important;
+    }
+}
+</style>
+
+{% load static %}
+
+<header>
+    <nav id="main-navbar" class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
         <div class="container-fluid">
 
-            <!-- BRAND -->
-            <a class="navbar-brand text-warning fw-bold" href="{% url 'home_page' %}">
-                E-Shop
+            <!-- BRAND (LOGO + NAME) -->
+            <a class="navbar-brand d-flex align-items-center gap-2 text-warning fw-bold"
+               href="{% url 'home_page' %}">
+                <img src="{% static 'images/logo.png' %}" alt="E-Shop Logo" class="nav-logo">
+                <span></span>
             </a>
 
             <!-- MOBILE TOGGLER -->
@@ -19,26 +292,34 @@
                 <ul class="navbar-nav me-3 mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link {% if current_page == 'home' %}active{% endif %}"
-                           href="{% url 'home_page' %}">Home</a>
+                           href="{% url 'home_page' %}">
+                           Home
+                        </a>
                     </li>
 
                     <li class="nav-item">
                         <a class="nav-link {% if current_page == 'about' %}active{% endif %}"
-                           href="{% url 'about_page' %}">About</a>
+                           href="{% url 'about_page' %}">
+                           About
+                        </a>
                     </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                            Manage
+                    <li class="nav-item">
+                        <a class="nav-link {% if current_page == 'contact' %}active{% endif %}"
+                           href="{% url 'contact_page' %}">
+                           Contact
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'products' %}">Products</a></li>
-                            
-                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {% if current_page == 'products' %}active{% endif %}"
+                           href="{% url 'products' %}">
+                           Products
+                        </a>
                     </li>
                 </ul>
 
-                <!--  SEARCH BAR -->
+                <!-- SEARCH BAR -->
                 <form class="d-flex flex-grow-1 mx-lg-3"
                       method="get"
                       action="{% url 'search_products' %}">
@@ -47,7 +328,7 @@
                            value="{{ query }}"
                            class="form-control rounded-start"
                            type="search"
-                           placeholder="Search cameras, lenses, accessories..."
+                           placeholder="Search Action-figures..."
                            aria-label="Search">
 
                     <button class="btn btn-warning rounded-end" type="submit">
@@ -60,12 +341,15 @@
 
                     <!-- CART -->
                     <li class="nav-item me-3 position-relative">
-                        <a class="nav-link" href="{% url 'view_cart' %}" >
+                        <a class="nav-link" href="{% url 'view_cart' %}">
                             <i class="bi bi-cart3 fs-4"></i>
+
                             {% if user.is_authenticated %}
-                            <span class="cart-badge" id="cart-count" data-count-url = "{% url 'cart_count' %}">0</span>
+                                <span class="cart-badge" id="cart-count"
+                                      data-count-url="{% url 'cart_count' %}">
+                                      0
+                                </span>
                             {% endif %}
-                    
                         </a>
                     </li>
 
@@ -74,8 +358,9 @@
                         <a class="nav-link dropdown-toggle d-flex align-items-center"
                            href="#" data-bs-toggle="dropdown">
                             <i class="bi bi-person-circle me-1"></i>
+
                             {% if user.is_authenticated %}
-                                {{user.username.capitalize}}
+                                {{ user.username|capfirst }}
                             {% else %}
                                 Hi User!
                             {% endif %}
@@ -83,17 +368,18 @@
 
                         <ul class="dropdown-menu dropdown-menu-end">
                             {% if user.is_authenticated %}
-                            <li>
-                                <form action="{% url 'logout' %}" method="post">
-                                    {% csrf_token %}
-                                    <button class="dropdown-item text-danger">Logout</button>
-                                </form>
-                            </li>
+                                <li>
+                                    <form action="{% url 'logout' %}" method="post">
+                                        {% csrf_token %}
+                                        <button class="dropdown-item text-danger">
+                                            Logout
+                                        </button>
+                                    </form>
+                                </li>
                             {% else %}
-                            <li><a class="dropdown-item" href="{% url 'signup' %}">Register</a></li>
-                            <li><a class="dropdown-item" href="{% url 'signin' %}">Login</a></li>
+                                <li><a class="dropdown-item" href="{% url 'signup' %}">Register</a></li>
+                                <li><a class="dropdown-item" href="{% url 'signin' %}">Login</a></li>
                             {% endif %}
-                            
                         </ul>
                     </li>
 
