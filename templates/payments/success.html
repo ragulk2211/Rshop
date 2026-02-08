@@ -1,6 +1,120 @@
 {% extends "base/base.html" %}
 
 {% block content %}
+<style>
+/* ==========================================
+   PAYMENT SUCCESS PAGE (Scoped - Safe)
+   No HTML changes required
+   Only affects: this page container/card
+   ========================================== */
+
+/* Scope only this exact layout */
+body .container.d-flex.justify-content-center.align-items-center.min-vh-75.py-5 {
+  max-width: 1100px;
+  margin-top: 70px;
+}
+
+/* Card */
+body .container.d-flex.justify-content-center.align-items-center.min-vh-75.py-5
+.card.shadow.text-center.p-4 {
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  border-radius: 22px !important;
+  overflow: hidden;
+  background: #ffffff;
+
+  box-shadow: 0px 25px 60px rgba(0, 0, 0, 0.10) !important;
+  transition: all 0.25s ease;
+}
+
+/* Card hover */
+body .container.d-flex.justify-content-center.align-items-center.min-vh-75.py-5
+.card.shadow.text-center.p-4:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 32px 75px rgba(0, 0, 0, 0.13) !important;
+}
+
+/* Card body padding */
+body .container.d-flex.justify-content-center.align-items-center.min-vh-75.py-5
+.card-body {
+  padding: 26px 22px !important;
+}
+
+/* Title */
+body .container.d-flex.justify-content-center.align-items-center.min-vh-75.py-5
+h1.h3.text-success {
+  font-size: 1.85rem;
+  font-weight: 950;
+  letter-spacing: 0.2px;
+  margin-bottom: 12px !important;
+}
+
+/* Order id text */
+body .container.d-flex.justify-content-center.align-items-center.min-vh-75.py-5
+p.fw-bold.mb-2 {
+  font-size: 1.05rem;
+  font-weight: 900 !important;
+  color: #0f172a;
+  margin-bottom: 10px !important;
+}
+
+/* Thank you message */
+body .container.d-flex.justify-content-center.align-items-center.min-vh-75.py-5
+p.mb-4 {
+  font-size: 14.5px;
+  font-weight: 650;
+  color: #475569;
+  line-height: 1.6;
+  margin-bottom: 18px !important;
+}
+
+/* Button */
+body .container.d-flex.justify-content-center.align-items-center.min-vh-75.py-5
+a.btn.btn-primary.w-100 {
+  padding: 13px 18px !important;
+  border-radius: 16px !important;
+
+  font-weight: 950 !important;
+  font-size: 15px !important;
+  letter-spacing: 0.2px;
+
+  border: none !important;
+
+  background: linear-gradient(135deg, #0d6efd, #2563eb) !important;
+  box-shadow: 0px 16px 35px rgba(37, 99, 235, 0.20);
+
+  transition: all 0.25s ease;
+}
+
+/* Hover */
+body .container.d-flex.justify-content-center.align-items-center.min-vh-75.py-5
+a.btn.btn-primary.w-100:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 22px 45px rgba(37, 99, 235, 0.28);
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  body .container.d-flex.justify-content-center.align-items-center.min-vh-75.py-5 {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  body .container.d-flex.justify-content-center.align-items-center.min-vh-75.py-5
+  .card.shadow.text-center.p-4 {
+    border-radius: 18px !important;
+    padding: 16px !important;
+  }
+
+  body .container.d-flex.justify-content-center.align-items-center.min-vh-75.py-5
+  h1.h3.text-success {
+    font-size: 1.55rem;
+  }
+}
+</style>
+
+
+
+
 <div class="container d-flex justify-content-center align-items-center min-vh-75 py-5">
 
     <div class="card shadow text-center p-4" style="max-width: 500px; width: 100%;">

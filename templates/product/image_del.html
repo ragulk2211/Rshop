@@ -6,6 +6,105 @@ Delete Product Image
 
 {% block content %}
 
+<style>
+/* =========================================
+   DELETE PRODUCT IMAGE PAGE (Scoped)
+   Only affects #product-detail-section
+   ========================================= */
+#productImageCarousel .carousel-actions {
+    display: none !important;
+}
+
+#product-detail-section {
+  padding-top: 40px !important;
+  padding-bottom: 40px !important;
+}
+
+/* Left + Right column spacing */
+#product-detail-section .row {
+  --bs-gutter-x: 2rem;
+  --bs-gutter-y: 2rem;
+}
+
+/* Right side card */
+#product-detail-section .product-info {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Heading */
+#product-detail-section .product-info h3 {
+  font-weight: 800;
+  font-size: 1.7rem;
+  letter-spacing: 0.2px;
+}
+
+/* Paragraph */
+#product-detail-section .product-info p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #444;
+  margin-bottom: 18px;
+}
+
+/* Product title highlight */
+#product-detail-section .product-info strong {
+  color: #111;
+  font-weight: 700;
+}
+
+/* Image preview */
+#product-detail-section .product-info img {
+  width: 100%;
+  max-height: 260px !important;
+  object-fit: contain;
+  border-radius: 16px !important;
+  padding: 14px;
+  background: #f8f9fb;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Buttons */
+#product-detail-section .product-info .btn {
+  padding: 12px 18px;
+  font-weight: 700;
+  border-radius: 12px;
+  transition: 0.2s ease;
+}
+
+/* Delete button */
+#product-detail-section .product-info .btn-danger {
+  box-shadow: 0 10px 25px rgba(220, 53, 69, 0.25);
+}
+
+/* Cancel button */
+#product-detail-section .product-info .btn-secondary {
+  background: #1f2937;
+  border-color: #1f2937;
+  box-shadow: 0 10px 25px rgba(31, 41, 55, 0.25);
+}
+
+/* Hover effects */
+#product-detail-section .product-info .btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Make buttons full width on mobile */
+@media (max-width: 576px) {
+  #product-detail-section .product-info .d-flex {
+    flex-direction: column;
+  }
+
+  #product-detail-section .product-info .btn {
+    width: 100%;
+  }
+}
+
+</style>
+
 <section id="product-detail-section" class="container py-5">
     <div class="row g-4 align-items-start">
 

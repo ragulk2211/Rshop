@@ -1,3 +1,48 @@
+<style>
+/* ======================================
+   Professional Field Styling (Scoped)
+   Works inside any page scope like:
+   #login-page, #register-page, #reset-password-page
+   ====================================== */
+
+#login-page .auth-label,
+#register-page .auth-label,
+#reset-password-page .auth-label {
+    font-size: 14px;
+    font-weight: 800;
+    color: #374151;
+    margin-bottom: 7px;
+}
+
+#login-page input,
+#register-page input,
+#reset-password-page input {
+    height: 48px;
+    border-radius: 14px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    padding: 10px 14px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.25s ease;
+}
+
+#login-page input:focus,
+#register-page input:focus,
+#reset-password-page input:focus {
+    outline: none;
+    border-color: #ffc107;
+    box-shadow: 0px 0px 0px 4px rgba(255, 193, 7, 0.18);
+}
+
+#login-page .auth-error,
+#register-page .auth-error,
+#reset-password-page .auth-error {
+    font-size: 13px;
+    font-weight: 700;
+    margin-top: 6px;
+}
+
+</style>
 <div class="mb-3">
     <label class="form-label">
         {{ field.label }}

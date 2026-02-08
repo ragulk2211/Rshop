@@ -6,7 +6,141 @@ Add Product
 
 
 {% block content %}
+<style>
+/* ==========================================
+   LOGIN FORM (Scoped - Safe)
+   Only affects this login section
+   ========================================== */
 
+section.p-5 {
+  background: linear-gradient(135deg, #f8fafc, #eef2ff);
+}
+
+/* Card styling */
+section.p-5 .card {
+  border-radius: 18px !important;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0px 18px 55px rgba(0, 0, 0, 0.12) !important;
+  position: relative;
+}
+
+/* Card body spacing */
+section.p-5 .card-body {
+  padding: 38px !important;
+}
+
+/* Login title */
+section.p-5 h3 {
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: #111827;
+  letter-spacing: 0.4px;
+}
+
+/* Alert */
+section.p-5 .alert {
+  border-radius: 12px;
+  font-size: 0.92rem;
+}
+
+/* ==========================================
+   Form Fields (Scoped)
+   Works even if fields are included from template
+   ========================================== */
+
+section.p-5 input,
+section.p-5 select,
+section.p-5 textarea {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+/* Focus glow */
+section.p-5 input:focus,
+section.p-5 select:focus,
+section.p-5 textarea:focus {
+  border-color: #f59e0b;
+  background: #fff;
+  box-shadow: 0px 0px 0px 4px rgba(245, 158, 11, 0.18);
+}
+
+/* Labels (if your included template has labels) */
+section.p-5 label {
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+/* Error messages */
+section.p-5 .text-danger,
+section.p-5 .invalid-feedback {
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+/* ==========================================
+   Button Styling (Scoped)
+   ========================================== */
+
+section.p-5 .btn.btn-warning {
+  border: none;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  border-radius: 14px;
+  padding: 12px 18px;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  box-shadow: 0px 14px 35px rgba(37, 99, 235, 0.25);
+  transition: all 0.25s ease;
+}
+
+/* Hover */
+section.p-5 .btn.btn-warning:hover {
+  transform: translateY(-2px);
+   box-shadow: 0px 18px 45px rgba(124, 58, 237, 0.28);
+}
+
+/* Active click */
+section.p-5 .btn.btn-warning:active {
+  transform: translateY(0px);
+}
+
+/* ==========================================
+   Responsive
+   ========================================== */
+
+@media (max-width: 768px) {
+  section.p-5 {
+    padding: 28px !important;
+  }
+
+  section.p-5 .card-body {
+    padding: 28px !important;
+  }
+
+  section.p-5 h3 {
+    font-size: 1.35rem;
+  }
+}
+
+@media (max-width: 480px) {
+  section.p-5 {
+    padding: 18px !important;
+  }
+
+  section.p-5 .card-body {
+    padding: 22px !important;
+  }
+}
+
+</style>
 <section class="p-5">
     <div class="container ">
         <div class="row justify-content-center">
@@ -14,7 +148,7 @@ Add Product
                 <div class="card shadow-lg border-0 rounded-4">
                     <div class="card-body p-4">
                         <h3 class="text-center mb-4">
-                            Login
+                            Add Product
                         </h3>
                         <form method="post" enctype="multipart/form-data">
                             {% csrf_token %}

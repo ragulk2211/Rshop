@@ -1,6 +1,5 @@
 * {
     margin: 0;
-   
     padding: 0;
     box-sizing: border-box;
 }
@@ -9,7 +8,9 @@
 #main-navbar {
     height: 70px; /* adjust if your navbar height changes */
 }
-
+body{
+    margin-top: 70px;
+}
 #page-content {
     padding-top: 70px; /* same value as navbar height */
 }

@@ -1,4 +1,105 @@
 {% if razorpay_order %}
+
+<style>
+/* ==========================================
+   PAYMENT SECTION (Scoped - Safe)
+   No HTML changes required
+   Only affects: .payment-section + this block
+   ========================================== */
+
+body .payment-section.mt-4 {
+  max-width: 820px;
+  margin: 26px auto 10px;
+  padding: 22px 22px;
+
+  background: #ffffff;
+  border-radius: 20px;
+
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0px 18px 45px rgba(0, 0, 0, 0.07);
+}
+
+/* Title */
+body .payment-section.mt-4 h4 {
+  margin: 0 0 14px;
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: #0f172a;
+  letter-spacing: 0.2px;
+}
+
+/* Razorpay form spacing */
+body .payment-section.mt-4 #payment-form {
+  margin-top: 10px;
+}
+
+/* Razorpay injected button */
+body .payment-section.mt-4 #payment-form .razorpay-payment-button {
+  width: 100%;
+  padding: 14px 18px;
+
+  border-radius: 16px;
+  border: none;
+
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 0.3px;
+
+  background: linear-gradient(135deg, #f97316, #ef4444);
+  color: #ffffff;
+
+  box-shadow: 0px 16px 35px rgba(239, 68, 68, 0.20);
+  transition: all 0.25s ease;
+}
+
+/* Hover */
+body .payment-section.mt-4 #payment-form .razorpay-payment-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 22px 45px rgba(239, 68, 68, 0.28);
+}
+
+/* Focus */
+body .payment-section.mt-4 #payment-form .razorpay-payment-button:focus {
+  outline: none;
+  box-shadow: 0px 0px 0px 4px rgba(249, 115, 22, 0.18);
+}
+
+/* If no razorpay_order */
+body p.text-danger.mt-4 {
+  max-width: 820px;
+  margin: 20px auto 0;
+  padding: 14px 16px;
+
+  border-radius: 18px;
+  border: 1px solid rgba(239, 68, 68, 0.20);
+  background: rgba(239, 68, 68, 0.06);
+
+  font-size: 14px;
+  font-weight: 800;
+  text-align: center;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  body .payment-section.mt-4 {
+    margin: 18px 12px 10px;
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  body .payment-section.mt-4 #payment-form .razorpay-payment-button {
+    border-radius: 14px;
+    font-size: 14px;
+    padding: 13px 16px;
+  }
+
+  body p.text-danger.mt-4 {
+    margin: 18px 12px 0;
+    border-radius: 16px;
+  }
+}
+</style>
+
 <div class="payment-section mt-4">
     <h4>Proceed to Payment</h4>
     <form id="payment-form" method="post" action="{% url 'payment_success' %}">

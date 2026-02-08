@@ -1,6 +1,133 @@
 {% extends "base/base.html" %}
 
 {% block content %}
+
+<style>
+/* ==========================================
+   ORDER CONFIRMATION PAGE (Scoped - Safe)
+   No HTML changes required
+   Only affects: this template container
+   ========================================== */
+
+/* Scope only this page container */
+body .container.my-5 {
+  max-width: 900px;
+}
+
+/* Title */
+body .container.my-5 h1.text-center {
+  font-size: 2.1rem;
+  font-weight: 900;
+  color: #0f172a;
+  letter-spacing: 0.3px;
+  margin-bottom: 22px;
+}
+
+/* Main Card */
+body .container.my-5 .card {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 20px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0px 20px 55px rgba(0, 0, 0, 0.08);
+}
+
+/* Card body */
+body .container.my-5 .card .card-body {
+  padding: 26px 26px;
+}
+
+/* Section headings */
+body .container.my-5 .card .card-body h4 {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #0f172a;
+  margin-top: 18px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+/* Paragraphs */
+body .container.my-5 .card .card-body p {
+  margin: 0 0 10px;
+  font-size: 14.5px;
+  font-weight: 650;
+  color: #334155;
+  line-height: 1.6;
+}
+
+/* Strong text */
+body .container.my-5 .card .card-body p strong {
+  color: #0f172a;
+  font-weight: 900;
+}
+
+/* Order details highlight */
+body .container.my-5 .card .card-body p:nth-of-type(1),
+body .container.my-5 .card .card-body p:nth-of-type(2) {
+  font-size: 15px;
+}
+
+/* Razorpay form spacing */
+body .container.my-5 #payment-form {
+  margin-top: 16px;
+}
+
+/* Razorpay injected button */
+body .container.my-5 #payment-form .razorpay-payment-button {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 16px;
+  border: none;
+
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 0.3px;
+
+  background: linear-gradient(135deg, #f97316, #ef4444);
+  color: #ffffff;
+
+  box-shadow: 0px 16px 35px rgba(239, 68, 68, 0.20);
+  transition: all 0.25s ease;
+}
+
+/* Hover */
+body .container.my-5 #payment-form .razorpay-payment-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 22px 45px rgba(239, 68, 68, 0.28);
+}
+
+/* Focus */
+body .container.my-5 #payment-form .razorpay-payment-button:focus {
+  outline: none;
+  box-shadow: 0px 0px 0px 4px rgba(249, 115, 22, 0.18);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  body .container.my-5 {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  body .container.my-5 h1.text-center {
+    font-size: 1.6rem;
+  }
+
+  body .container.my-5 .card .card-body {
+    padding: 18px;
+  }
+
+  body .container.my-5 #payment-form .razorpay-payment-button {
+    border-radius: 14px;
+    font-size: 14px;
+    padding: 13px 16px;
+  }
+}
+</style>
+
+
 <div class="container my-5">
     <h1 class="text-center">Order Confirmation</h1>
     <div class="card">
