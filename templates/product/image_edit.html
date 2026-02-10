@@ -12,7 +12,7 @@ Edit Product Image
    ========================================= */
 
 #productImageCarousel .carousel-actions {
-    display: none !important;
+  display: none !important;
 }
 
 #product-detail-section {
@@ -26,13 +26,38 @@ Edit Product Image
   --bs-gutter-y: 2rem;
 }
 
-/* Right side card */
+/* =========================================
+   IMPORTANT FIX:
+   Remove sticky/fixed effect ONLY here
+   ========================================= */
+
+/* If your carousel include uses sticky */
+#product-detail-section #productImageCarousel,
+#product-detail-section .product-carousel,
+#product-detail-section .carousel,
+#product-detail-section .carousel-inner {
+  position: relative !important;
+  top: auto !important;
+}
+
+/* If your include has sticky wrapper */
+#product-detail-section .sticky-top,
+#product-detail-section .position-sticky {
+  position: relative !important;
+  top: auto !important;
+}
+
+/* =========================================
+   Right side card
+   ========================================= */
+
 #product-detail-section .product-info {
   background: #ffffff;
   border-radius: 18px;
   padding: 28px;
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.08);
   border: 1px solid rgba(0, 0, 0, 0.06);
+  color: #111;
 }
 
 /* Title */
@@ -40,6 +65,7 @@ Edit Product Image
   font-weight: 800;
   font-size: 1.65rem;
   letter-spacing: 0.2px;
+  color: #111;
 }
 
 /* Image preview */
@@ -60,12 +86,13 @@ Edit Product Image
 
 #product-detail-section .product-info label {
   display: block;
-  font-weight: 700;
+  font-weight: 800;
   margin-bottom: 6px;
-  color: #222;
+  color: #111;
   font-size: 0.95rem;
 }
 
+/* All inputs */
 #product-detail-section .product-info input,
 #product-detail-section .product-info textarea,
 #product-detail-section .product-info select {
@@ -76,7 +103,14 @@ Edit Product Image
   outline: none;
   font-size: 1rem;
   transition: 0.2s ease;
-  background: #fff;
+  background: #ffffff;
+  color: #111;
+}
+
+/* Placeholder */
+#product-detail-section .product-info input::placeholder,
+#product-detail-section .product-info textarea::placeholder {
+  color: rgba(0, 0, 0, 0.45);
 }
 
 /* Focus */
@@ -87,16 +121,70 @@ Edit Product Image
   box-shadow: 0 0 0 4px rgba(240, 173, 78, 0.18);
 }
 
-/* File input */
+/* =========================================
+   Professional file input (white bg, black text)
+   ========================================= */
+
 #product-detail-section .product-info input[type="file"] {
-  padding: 10px;
+  width: 100%;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  background: #ffffff;
+  color: #111111;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+/* Hover */
+#product-detail-section .product-info input[type="file"]:hover {
+  border-color: rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.06);
+}
+
+/* Focus */
+#product-detail-section .product-info input[type="file"]:focus {
+  outline: none;
+  border-color: #f0ad4e;
+  box-shadow: 0 0 0 4px rgba(240, 173, 78, 0.18);
+}
+
+/* The "Choose File" button */
+#product-detail-section .product-info input[type="file"]::file-selector-button {
+  background: #0b0f19;
+  color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 900;
+  margin-right: 12px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+#product-detail-section .product-info input[type="file"]::file-selector-button:hover {
+  transform: translateY(-1px);
+  background: #111827;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+}
+
+/* Safari fallback */
+#product-detail-section .product-info input[type="file"]::-webkit-file-upload-button {
+  background: #0b0f19;
+  color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 900;
+  margin-right: 12px;
   cursor: pointer;
 }
 
 /* Buttons */
 #product-detail-section .product-info .btn {
   padding: 12px 18px;
-  font-weight: 700;
+  font-weight: 800;
   border-radius: 12px;
   transition: 0.2s ease;
 }
@@ -108,9 +196,9 @@ Edit Product Image
 
 /* Cancel button */
 #product-detail-section .product-info .btn-secondary {
-  background: #1f2937;
-  border-color: #1f2937;
-  box-shadow: 0 10px 25px rgba(31, 41, 55, 0.22);
+  background: #111827;
+  border-color: #111827;
+  box-shadow: 0 10px 25px rgba(17, 24, 39, 0.18);
 }
 
 /* Hover effects */
@@ -132,47 +220,47 @@ Edit Product Image
 </style>
 
 <section id="product-detail-section" class="container py-5">
-    <div class="row g-4 align-items-start">
+  <div class="row g-4 align-items-start">
 
-        <!-- LEFT: Product Image Carousel -->
-        <div class="col-lg-6">
-            {% include 'product/includes/productImageCarousel.html' %}
-        </div>
-
-        <!-- RIGHT: Edit Image Form -->
-        <div class="col-lg-6">
-            <div class="product-info">
-
-                <h3 class="mb-3 text-warning">
-                    Edit Product Image
-                </h3>
-
-                <!-- Current image preview -->
-                <img src="{{ image.img.url }}"
-                     class="img-fluid rounded mb-3"
-                     style="max-height: 240px; object-fit: contain;"
-                     alt="Current Image">
-
-                <form method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-
-                    <div class="d-flex gap-2 mt-3">
-                        <button type="submit" class="btn btn-success">
-                            Save Changes
-                        </button>
-
-                        <a href="{% url 'product_details' image.product.pk %}"
-                           class="btn btn-secondary">
-                            Cancel
-                        </a>
-                    </div>
-                </form>
-
-            </div>
-        </div>
-
+    <!-- LEFT: Product Image Carousel -->
+    <div class="col-lg-6">
+      {% include 'product/includes/productImageCarousel.html' %}
     </div>
+
+    <!-- RIGHT: Edit Image Form -->
+    <div class="col-lg-6">
+      <div class="product-info">
+
+        <h3 class="mb-3 text-warning">
+          Edit Product Image
+        </h3>
+
+        <!-- Current image preview -->
+        <img src="{{ image.img.url }}"
+             class="img-fluid rounded mb-3"
+             style="max-height: 240px; object-fit: contain;"
+             alt="Current Image">
+
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.as_p }}
+
+          <div class="d-flex gap-2 mt-3">
+            <button type="submit" class="btn btn-success">
+              Save Changes
+            </button>
+
+            <a href="{% url 'product_details' image.product.pk %}"
+               class="btn btn-secondary">
+              Cancel
+            </a>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+  </div>
 </section>
 
 {% endblock %}

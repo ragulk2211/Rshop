@@ -12,6 +12,7 @@ Add Product
    ========================================== */
 
 .media-form-card {
+  margin-bottom: 80px;
   margin-top: 80px;
   border-radius: 18px;
   background: #ffffff;
@@ -50,6 +51,7 @@ Add Product
   background: #f9fafb;
   outline: none;
   transition: all 0.2s ease;
+  color: #111827;
 }
 
 /* Textarea */
@@ -67,39 +69,91 @@ Add Product
   box-shadow: 0px 0px 0px 4px rgba(37, 99, 235, 0.15);
 }
 
-/* File input styling */
+/* ==========================================
+   FILE INPUT (Fix white choose file text)
+   ========================================== */
+
 .media-form-card input[type="file"] {
-  padding: 10px;
-  background: #fff;
+  padding: 10px 12px;
+  background: #ffffff;
   cursor: pointer;
+  color: #111827 !important;
+  font-weight: 700;
+  border-radius: 12px;
+}
+
+/* The button part (Chrome/Edge) */
+.media-form-card input[type="file"]::file-selector-button {
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-right: 12px;
+  font-weight: 800;
+  cursor: pointer;
+
+  background: #111827;
+  color: #ffffff;
+
+  transition: 0.2s ease;
+}
+
+/* Hover for choose file button */
+.media-form-card input[type="file"]::file-selector-button:hover {
+  background: #000000;
+  transform: translateY(-1px);
+}
+
+/* Firefox support */
+.media-form-card input[type="file"]::-moz-file-upload-button {
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-right: 12px;
+  font-weight: 800;
+  cursor: pointer;
+
+  background: #111827;
+  color: #ffffff;
+
+  transition: 0.2s ease;
+}
+
+.media-form-card input[type="file"]::-moz-file-upload-button:hover {
+  background: #000000;
 }
 
 /* Small error message */
 .media-form-card .text-danger.small {
   font-size: 0.82rem;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 /* ==========================================
-   Gradient Button (Scoped)
+   BUTTON (Smaller + Hover black)
    ========================================== */
 
 .media-form-card .btn-gradient {
   border: none;
-  border-radius: 14px;
-  padding: 12px 18px;
-  font-weight: 700;
+  border-radius: 12px;
+
+  /* smaller */
+  padding: 10px 16px;
+  font-size: 0.95rem;
+
+  font-weight: 800;
   letter-spacing: 0.3px;
   color: #fff;
+
   background: linear-gradient(135deg, #2563eb, #7c3aed);
-  box-shadow: 0px 14px 35px rgba(37, 99, 235, 0.25);
+  box-shadow: 0px 12px 28px rgba(37, 99, 235, 0.20);
   transition: all 0.25s ease;
 }
 
-/* Hover */
+/* Hover => Black */
 .media-form-card .btn-gradient:hover {
+  background: #000000 !important;
   transform: translateY(-2px);
-  box-shadow: 0px 18px 45px rgba(124, 58, 237, 0.28);
+  box-shadow: 0px 18px 40px rgba(0, 0, 0, 0.25);
 }
 
 /* Click */
@@ -133,51 +187,49 @@ Add Product
     padding: 11px 12px;
   }
 }
-
 </style>
 
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-lg-6 col-md-8">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
 
-            <div class="card media-form-card shadow-lg border-0">
-                <div class="card-body p-5">
+      <div class="card media-form-card shadow-lg border-0">
+        <div class="card-body p-5">
 
-                    <h4 class="text-center fw-bold mb-4">
-                        Upload Product Media
-                    </h4>
+          <h4 class="text-center fw-bold mb-4">
+            Upload Product Media
+          </h4>
 
-                    <form method="POST" enctype="multipart/form-data">
-                        {% csrf_token %}
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
 
-                        {% for field in form %}
-                        <div class="mb-4">
-                            <label class="form-label fw-semibold">
-                                {{ field.label }}
-                            </label>
-                            {{ field }}
-                            {% for error in field.errors %}
-                            <div class="text-danger small mt-1">
-                                {{ error }}
-                            </div>
-                            {% endfor %}
-                        </div>
-                        {% endfor %}
+            {% for field in form %}
+            <div class="mb-4">
+              <label class="form-label fw-semibold">
+                {{ field.label }}
+              </label>
+              {{ field }}
 
-                        <div class="d-grid mt-4">
-                            <button type="submit" class="btn btn-gradient btn-lg">
-                                Add Media
-                            </button>
-                        </div>
-                    </form>
-
-                </div>
+              {% for error in field.errors %}
+              <div class="text-danger small mt-1">
+                {{ error }}
+              </div>
+              {% endfor %}
             </div>
+            {% endfor %}
+
+            <div class="d-grid mt-4">
+              <button type="submit" class="btn btn-gradient">
+                Add Media
+              </button>
+            </div>
+          </form>
 
         </div>
+      </div>
+
     </div>
+  </div>
 </div>
-
-
 
 {% endblock %}

@@ -1,274 +1,595 @@
-<style>
-/* ==========================================
-   ABOUT PAGE (Light + Clean + Professional)
-   Scoped Safe: Only affects About page IDs
-   ========================================== */
-
-/* Overall spacing fix (no white bar under navbar) */
-#about-hero {
-  margin-top: 70px !important;
-  padding: 55px 18px;
-  border-radius: 18px;
-
-  background: #ffffff;
-  border: 1px solid #e9ecef;
-
-  box-shadow: 0px 10px 28px rgba(0, 0, 0, 0.06);
-}
-
-/* Hero Title */
-#about-title {
-  font-size: 44px;
-  font-weight: 900;
-  color: #212529;
-  letter-spacing: 0.3px;
-}
-
-/* Hero Subtitle */
-#about-subtitle {
-  max-width: 850px;
-  margin: 0 auto;
-
-  font-size: 16px;
-  line-height: 1.7;
-  color: #6c757d;
-}
-
-/* ==========================================
-   MAIN SECTION
-   ========================================== */
-
-#about-main {
-  margin-top: 35px;
-  padding: 10px 8px;
-}
-
-/* Heading */
-#about-heading {
-  font-size: 26px;
-  font-weight: 900;
-  color: #212529;
-  margin-bottom: 14px;
-}
-
-/* Paragraphs */
-#about-description,
-#about-description-secondary {
-  font-size: 15px;
-  line-height: 1.75;
-  color: #495057;
-}
-
-/* ==========================================
-   IMAGE
-   ========================================== */
-
-#about-image {
-  max-width: 360px;
-  border-radius: 18px !important;
-
-  background: #fff;
-  border: 1px solid #e9ecef;
-
-  box-shadow: 0px 10px 26px rgba(0, 0, 0, 0.08);
-
-  transition: transform 0.28s ease, box-shadow 0.28s ease;
-}
-
-#about-image:hover {
-  transform: translateY(-6px);
-  box-shadow: 0px 18px 45px rgba(0, 0, 0, 0.12);
-}
-
-/* ==========================================
-   FEATURES
-   ========================================== */
-
-#about-features {
-  margin-top: 35px;
-}
-
-/* Features heading */
-#features-heading {
-  font-size: 26px;
-  font-weight: 900;
-  color: #212529;
-}
-
-/* Feature cards */
-#about-features .card {
-  border: 1px solid #e9ecef;
-  border-radius: 18px;
-  background: #ffffff;
-  overflow: hidden;
-
-  box-shadow: 0px 8px 22px rgba(0, 0, 0, 0.05);
-
-  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
-}
-
-/* Hover effect (light + premium) */
-#about-features .card:hover {
-  transform: translateY(-7px);
-  border-color: rgba(13, 110, 253, 0.30);
-  box-shadow: 0px 18px 45px rgba(0, 0, 0, 0.10);
-}
-
-/* Card body */
-#about-features .card-body {
-  padding: 22px 18px;
-}
-
-/* Feature title */
-#about-features .card-title {
-  font-size: 18px;
-  font-weight: 800;
-  color: #212529;
-  margin-bottom: 10px;
-}
-
-/* Feature text */
-#about-features .card-text {
-  font-size: 14px;
-  line-height: 1.65;
-  color: #6c757d;
-  margin: 0;
-}
-
-/* ==========================================
-   FOOTER
-   ========================================== */
-
-#about-footer {
-  margin-top: 40px;
-  padding: 22px 10px;
-  border-top: 1px solid #e9ecef;
-}
-
-#about-footer-text {
-  font-size: 15px;
-  font-weight: 700;
-  color: #212529;
-}
-
-/* ==========================================
-   RESPONSIVE
-   ========================================== */
-
-@media (max-width: 576px) {
-  #about-hero {
-    padding: 35px 14px;
-    border-radius: 14px;
-  }
-
-  #about-title {
-    font-size: 28px;
-  }
-
-  #about-subtitle {
-    font-size: 14px;
-  }
-
-  #about-heading,
-  #features-heading {
-    font-size: 20px;
-  }
-
-  #about-image {
-    max-width: 260px;
-    border-radius: 14px !important;
-  }
-}
-
-</style>
-
 {% extends 'base/base.html' %}
 {% load static %}
 
 {% block title %}
-About | Eshop
+About | AnimeXAnime
 {% endblock %}
 
 {% block content %}
-    <!-- Hero Section -->
-    <section class="text-center mb-5" id="about-hero">
-        <h1 class="fw-bold" id="about-title">About <span class="text-primary">Eshop</span></h1>
-        <p class="lead mt-3" id="about-subtitle">
-            Your trusted destination for premium Anime Action Figures, collectibles, and fandom merchandise.
-        </p>
-    </section>
 
-    <!-- About Content -->
-    <section class="row align-items-center mb-5" id="about-main">
-        <div class="col-md-6 mb-4 mb-md-0" id="about-text-section">
-            <h3 class="mb-3" id="about-heading">Who We Are</h3>
-            <p id="about-description">
-                <strong>Eshop</strong> is an anime collectibles store created for true fans.
-                We specialize in high-quality <strong>Anime Action Figures</strong>, character statues,
-                and officially inspired merchandise from popular series.
-            </p>
-            <p id="about-description-secondary">
-                Whether you're a collector, a hardcore anime fan, or buying a gift,
-                we make it easy to find the perfect figure with safe checkout and reliable delivery.
-            </p>
+<style>
+/* ==========================================================
+   ABOUT PAGE — Luxury Black/White (Scoped Safe)
+   Buttons: Blue only
+   Scoped: Only affects #ax-about-page and children
+   ========================================================== */
+
+#ax-about-page{
+  padding: 110px 0 55px;
+  color: #ffffff;
+}
+
+/* Wrapper */
+#ax-about-page .ax-wrap{
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 14px;
+}
+
+/* ==========================================================
+   HERO
+   ========================================================== */
+
+#ax-about-page .ax-hero{
+  padding: 26px 18px;
+  border-radius: 20px;
+
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.10);
+
+  box-shadow: 0 18px 55px rgba(0,0,0,0.45);
+  text-align: center;
+}
+
+#ax-about-page .ax-badge{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 14px;
+  border-radius: 999px;
+
+  background: rgba(0,0,0,0.35);
+  border: 1px solid rgba(255,255,255,0.12);
+
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.35px;
+  color: rgba(255,255,255,0.92);
+
+  transition: 0.25s ease;
+}
+
+#ax-about-page .ax-badge:hover{
+  transform: translateY(-1px);
+  border-color: rgba(255,255,255,0.22);
+}
+
+/* Title */
+#ax-about-page .ax-title{
+  margin-top: 14px;
+  font-size: 44px;
+  font-weight: 950;
+  letter-spacing: 0.6px;
+  color: #ffffff;
+  line-height: 1.1;
+}
+
+#ax-about-page .ax-title span{
+  color: #ffffff;
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-decoration-color: rgba(59,130,246,0.95);
+  text-underline-offset: 8px;
+}
+
+#ax-about-page .ax-subtitle{
+  margin: 12px auto 0;
+  max-width: 900px;
+
+  font-size: 15px;
+  font-weight: 650;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.7;
+}
+
+/* ==========================================================
+   QUICK STATS
+   ========================================================== */
+
+#ax-about-page .ax-stats{
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+#ax-about-page .ax-stat{
+  border-radius: 18px;
+  padding: 16px;
+
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.10);
+
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+  transition: 0.25s ease;
+}
+
+#ax-about-page .ax-stat:hover{
+  transform: translateY(-3px);
+  border-color: rgba(255,255,255,0.20);
+}
+
+#ax-about-page .ax-stat h4{
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 950;
+  color: #ffffff;
+}
+
+#ax-about-page .ax-stat p{
+  margin: 0;
+  font-size: 14px;
+  font-weight: 650;
+  color: rgba(255,255,255,0.70);
+}
+
+/* ==========================================================
+   MAIN GRID
+   ========================================================== */
+
+#ax-about-page .ax-grid{
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 18px;
+}
+
+/* Card base */
+#ax-about-page .ax-card{
+  border-radius: 22px;
+  padding: 20px;
+
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.10);
+
+  box-shadow: 0 16px 50px rgba(0,0,0,0.45);
+  transition: 0.25s ease;
+}
+
+#ax-about-page .ax-card:hover{
+  border-color: rgba(255,255,255,0.18);
+  box-shadow: 0 22px 70px rgba(0,0,0,0.55);
+}
+
+#ax-about-page .ax-card h2{
+  margin: 0 0 10px;
+  font-size: 20px;
+  font-weight: 950;
+  color: #ffffff;
+}
+
+#ax-about-page .ax-card p{
+  margin: 0 0 10px;
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.72);
+}
+
+#ax-about-page .ax-card p:last-child{
+  margin-bottom: 0;
+}
+
+/* ==========================================================
+   LIST STYLE
+   ========================================================== */
+
+#ax-about-page .ax-list{
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+#ax-about-page .ax-list li{
+  padding: 10px 12px;
+  border-radius: 14px;
+
+  background: rgba(0,0,0,0.22);
+  border: 1px solid rgba(255,255,255,0.08);
+
+  margin-bottom: 10px;
+  color: rgba(255,255,255,0.78);
+  font-size: 14px;
+  font-weight: 700;
+
+  transition: 0.25s ease;
+}
+
+#ax-about-page .ax-list li:hover{
+  transform: translateY(-2px);
+  border-color: rgba(59,130,246,0.30);
+}
+
+/* ==========================================================
+   IMAGE (Optional)
+   ========================================================== */
+
+#ax-about-page .ax-image{
+  width: 100%;
+  max-width: 380px;
+  border-radius: 20px;
+
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 18px 55px rgba(0,0,0,0.55);
+
+  transition: 0.28s ease;
+}
+
+#ax-about-page .ax-image:hover{
+  transform: translateY(-5px);
+}
+
+/* ==========================================================
+   FEATURES GRID
+   ========================================================== */
+
+#ax-about-page .ax-features{
+  margin-top: 18px;
+}
+
+#ax-about-page .ax-features h3{
+  text-align: center;
+  margin-bottom: 14px;
+  font-size: 26px;
+  font-weight: 950;
+  color: #ffffff;
+}
+
+#ax-about-page .ax-feature-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+#ax-about-page .ax-feature{
+  border-radius: 20px;
+  padding: 18px;
+
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.10);
+
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+  transition: 0.25s ease;
+}
+
+#ax-about-page .ax-feature:hover{
+  transform: translateY(-4px);
+  border-color: rgba(59,130,246,0.25);
+}
+
+#ax-about-page .ax-feature h4{
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 950;
+  color: #ffffff;
+}
+
+#ax-about-page .ax-feature p{
+  margin: 0;
+  font-size: 14px;
+  font-weight: 650;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.65;
+}
+
+/* ==========================================================
+   CTA BUTTON (Blue only)
+   ========================================================== */
+
+#ax-about-page .ax-cta{
+  margin-top: 18px;
+  text-align: center;
+}
+
+#ax-about-page .ax-btn{
+  display: inline-block;
+  padding: 13px 18px;
+  border-radius: 16px;
+  text-decoration: none;
+
+  background: #3b82f6; /* BLUE ONLY */
+  color: #ffffff;
+  font-weight: 950;
+  letter-spacing: 0.3px;
+  border: none;
+
+  transition: 0.25s ease;
+  box-shadow: 0 18px 55px rgba(59,130,246,0.18);
+}
+
+#ax-about-page .ax-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 26px 70px rgba(59,130,246,0.25);
+}
+
+/* ==========================================================
+   FAQ
+   ========================================================== */
+
+#ax-about-page .ax-faq{
+  margin-top: 18px;
+}
+
+#ax-about-page .ax-faq h3{
+  text-align: center;
+  margin-bottom: 14px;
+  font-size: 26px;
+  font-weight: 950;
+  color: #ffffff;
+}
+
+#ax-about-page details{
+  border-radius: 18px;
+  padding: 14px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.10);
+  margin-bottom: 12px;
+  transition: 0.25s ease;
+}
+
+#ax-about-page details:hover{
+  border-color: rgba(255,255,255,0.20);
+}
+
+#ax-about-page details[open]{
+  border-color: rgba(59,130,246,0.35);
+}
+
+#ax-about-page summary{
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 950;
+  color: #ffffff;
+  list-style: none;
+}
+
+#ax-about-page summary::-webkit-details-marker{
+  display: none;
+}
+
+#ax-about-page details p{
+  margin: 10px 0 0;
+  color: rgba(255,255,255,0.72);
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.65;
+}
+
+/* ==========================================================
+   FOOTER
+   ========================================================== */
+
+#ax-about-page .ax-footer{
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,0.10);
+  text-align: center;
+}
+
+#ax-about-page .ax-footer p{
+  margin: 0;
+  font-size: 14px;
+  font-weight: 800;
+  color: rgba(255,255,255,0.75);
+}
+
+#ax-about-page .ax-footer .ax-page{
+  margin-bottom: 6px;
+  color: rgba(255,255,255,0.55);
+  font-weight: 750;
+}
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+
+@media (max-width: 992px){
+  #ax-about-page .ax-grid{
+    grid-template-columns: 1fr;
+  }
+
+  #ax-about-page .ax-feature-grid{
+    grid-template-columns: 1fr;
+  }
+
+  #ax-about-page .ax-stats{
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #ax-about-page .ax-title{
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 576px){
+  #ax-about-page{
+    padding: 95px 0 45px;
+  }
+
+  #ax-about-page .ax-hero{
+    padding: 18px 14px;
+    border-radius: 18px;
+  }
+
+  #ax-about-page .ax-title{
+    font-size: 28px;
+  }
+
+  #ax-about-page .ax-card{
+    padding: 16px;
+    border-radius: 18px;
+  }
+
+  #ax-about-page .ax-stats{
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+
+<section id="ax-about-page">
+  <div class="ax-wrap">
+
+    <!-- HERO -->
+    <div class="ax-hero">
+      <div class="ax-badge">🖤 AnimeXAnime • Premium Collectibles</div>
+
+      <h1 class="ax-title">
+        About <span>AnimeXAnime</span>
+      </h1>
+
+      <p class="ax-subtitle">
+        AnimeXAnime is built for collectors who love premium anime action figures, statues,
+        and high-detail display pieces. We focus on quality, safe packaging, and fast support —
+        so you can collect with confidence.
+      </p>
+
+      <!-- QUICK STATS -->
+      <div class="ax-stats">
+        <div class="ax-stat">
+          <h4>⭐ Premium Quality</h4>
+          <p>Carefully curated collectibles</p>
+        </div>
+        <div class="ax-stat">
+          <h4>📦 Safe Packaging</h4>
+          <p>Bubble wrap + hard box protection</p>
+        </div>
+        <div class="ax-stat">
+          <h4>🚚 Fast Delivery</h4>
+          <p>Tracking provided after dispatch</p>
+        </div>
+        <div class="ax-stat">
+          <h4>💬 Fan Support</h4>
+          <p>Friendly support for collectors</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN GRID -->
+    <div class="ax-grid">
+
+      <!-- LEFT -->
+      <div class="ax-card">
+        <h2>Who We Are</h2>
+        <p>
+          <strong>AnimeXAnime</strong> is an anime collectibles store created for true fans.
+          We specialize in high-quality action figures, character statues, and officially inspired
+          premium collectibles from popular anime series.
+        </p>
+        <p>
+          Whether you're a serious collector, a hardcore anime fan, or buying a gift,
+          we make it easy to find the perfect figure with secure checkout and reliable delivery.
+        </p>
+
+        <h2 style="margin-top:16px;">What Makes Us Different</h2>
+        <ul class="ax-list">
+          <li>✅ Premium product selection with clear photos and details</li>
+          <li>✅ Collector-safe packaging (no broken boxes)</li>
+          <li>✅ Secure payment with Razorpay + UPI</li>
+          <li>✅ Fast customer support with order tracking help</li>
+          <li>✅ Quality checks before dispatch</li>
+        </ul>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="ax-card" style="text-align:center;">
+        <h2>Collector First Experience</h2>
+        <p>
+          Every order is treated like a collector’s item. We care about box condition,
+          product safety, and making sure you receive your figure in perfect shape.
+        </p>
+
+        <!-- OPTIONAL IMAGE (remove if you want) -->
+        <img src="{% static 'images/denji.jpg' %}" alt="AnimeXAnime" class="ax-image">
+
+        <p style="margin-top:12px;">
+          We’re based in <strong>India</strong> and ship across the country with tracking and safe packaging.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- FEATURES -->
+    <div class="ax-features">
+      <h3>Why Choose AnimeXAnime?</h3>
+
+      <div class="ax-feature-grid">
+        <div class="ax-feature">
+          <h4>Authentic Premium Look</h4>
+          <p>
+            We focus on premium detailing, clean finish, and collector-grade display figures.
+          </p>
         </div>
 
-        <div class="col-md-6 text-center" id="about-image-section">
-            <img src="{% static 'images/denji.jpg' %}"
-                 class="img-fluid rounded shadow"
-                 alt="About Eshop"
-                 id="about-image">
+        <div class="ax-feature">
+          <h4>Secure Checkout</h4>
+          <p>
+            Razorpay + UPI supported for safe, fast, and trusted payments.
+          </p>
         </div>
-    </section>
 
-    <!-- Why Choose Us -->
-    <section class="mb-5" id="about-features">
-        <h3 class="text-center mb-4" id="features-heading">Why Choose Eshop?</h3>
-        <div class="row text-center">
-            <div class="col-md-4 mb-4" id="feature-1">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">Authentic & Premium Figures</h5>
-                        <p class="card-text">
-                            We focus on quality, detailing, and carefully curated anime collectibles.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mb-4" id="feature-2">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">Safe Packaging & Delivery</h5>
-                        <p class="card-text">
-                            Your figures are packed securely to avoid damage and delivered with care.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 mb-4" id="feature-3">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">Fast Fan Support</h5>
-                        <p class="card-text">
-                            Need help choosing a figure? Our team is always ready to support you.
-                        </p>
-                    </div>
-                </div>
-            </div>
+        <div class="ax-feature">
+          <h4>Fast Fan Support</h4>
+          <p>
+            Need help choosing a figure? We reply fast and guide you properly.
+          </p>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <!-- Footer Note -->
-    <section class="text-center" id="about-footer">
-        <p class="text-muted mb-1">
-            Current Page : {{ current_page }}
-        </p>
-        <p id="about-footer-text">
-            Thank you for choosing <strong>Eshop</strong>. Collect your favorites & power up your shelf! ⚡🛒
-        </p>
-    </section>
+    <!-- CTA (FIXED: no reverse error) -->
+    <div class="ax-cta">
+      <a href="/products/" class="ax-btn">Explore Figures</a>
+    </div>
 
-</div>
+    <!-- FAQ -->
+    <div class="ax-faq">
+      <h3>Frequently Asked Questions</h3>
+
+      <details>
+        <summary>Do you sell original anime figures?</summary>
+        <p>
+          We focus on premium quality collectibles and provide full product details and images.
+          For specific authenticity info, please contact support before ordering.
+        </p>
+      </details>
+
+      <details>
+        <summary>How long does shipping take?</summary>
+        <p>
+          Usually 2–6 days depending on your location. Tracking will be provided after dispatch.
+        </p>
+      </details>
+
+      <details>
+        <summary>What if my product arrives damaged?</summary>
+        <p>
+          We pack securely, but if any issue happens, contact us immediately with photos.
+          Our replacement policy will apply based on the case.
+        </p>
+      </details>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="ax-footer">
+      <p class="ax-page">Current Page : {{ current_page }}</p>
+      <p>
+        Thank you for choosing <strong>AnimeXAnime</strong>. Collect your favorites & power up your shelf! ⚡🛒
+      </p>
+    </div>
+
+  </div>
+</section>
+
 {% endblock %}
+

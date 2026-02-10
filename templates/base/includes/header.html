@@ -1,90 +1,17 @@
 {% load static %}
 
 <style>
-/* ==========================================
-   Main Navbar (Scoped - Safe)
-   Only affects #main-navbar
-   ========================================== */
-
-/* ==========================================
-   NAVBAR SEARCH BAR (Scoped - Safe)
-   Only affects: #main-navbar search form
-   ========================================== */
-
-#main-navbar form.d-flex.flex-grow-1.mx-lg-3 {
-    max-width: 520px;
-    width: 100%;
-}
-
-/* Input */
-#main-navbar form.d-flex.flex-grow-1.mx-lg-3 input.form-control {
-    height: 46px;
-    border-radius: 16px 0 0 16px !important;
-
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    background: rgba(255, 255, 255, 0.07);
-    color: #ffffff;
-
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0.2px;
-
-    padding-left: 16px;
-
-    transition: 0.25s ease;
-}
-
-/* Placeholder */
-#main-navbar form.d-flex.flex-grow-1.mx-lg-3 input.form-control::placeholder {
-    color: rgba(255, 255, 255, 0.55);
-    font-weight: 600;
-}
-
-/* Focus effect */
-#main-navbar form.d-flex.flex-grow-1.mx-lg-3 input.form-control:focus {
-    outline: none;
-    border-color: rgba(255, 193, 7, 0.65);
-    box-shadow: 0px 0px 0px 4px rgba(255, 193, 7, 0.14);
-    background: rgba(255, 255, 255, 0.10);
-}
-
-/* Button */
-#main-navbar form.d-flex.flex-grow-1.mx-lg-3 button.btn.btn-warning {
-    height: 46px;
-    min-width: 56px;
-
-    border-radius: 0 16px 16px 0 !important;
-
-    border: none !important;
-    font-weight: 900;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    box-shadow: 0px 12px 28px rgba(255, 193, 7, 0.20);
-    transition: 0.25s ease;
-}
-
-/* Hover */
-#main-navbar form.d-flex.flex-grow-1.mx-lg-3 button.btn.btn-warning:hover {
-    transform: translateY(-2px);
-    box-shadow: 0px 18px 40px rgba(255, 193, 7, 0.28);
-}
-
-/* Search icon */
-#main-navbar form.d-flex.flex-grow-1.mx-lg-3 button.btn.btn-warning i {
-    font-size: 18px;
-}
-
+/* =========================================================
+   NAVBAR (Scoped - Safe)
+   Only affects: #main-navbar
+   ========================================================= */
 
 #main-navbar {
-    padding: 12px 14px;
-    background: linear-gradient(135deg, #0b1220, #0f172a) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0px 18px 45px rgba(0, 0, 0, 0.18);
+    padding: 10px 14px;
+    background: var(--bg-secondary) !important;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0px 18px 45px rgba(0, 0, 0, 0.3);
 
-    /* FIXED HEADER */
     position: fixed;
     top: 0;
     left: 0;
@@ -92,300 +19,632 @@
     z-index: 9999;
 }
 
-/* Logo Image */
+/* Logo */
 #main-navbar .nav-logo {
-    height: 90px;
+    height: 62px;
     width: auto;
     object-fit: contain;
     display: block;
-}
-
-/* IMPORTANT: Push page content below fixed navbar */
-
-
-/* ✅ FIX GAP: Remove extra top margin from first element after navbar */
-header + * {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-}
-
-/* If carousel is inside main/container, fix that too */
-header + main,
-header + section,
-header + div {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
+    transition: 0.25s ease;
 }
 
 /* Brand */
+#main-navbar .brand-text {
+    font-weight: 950;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+}
+
+/* Normal colors */
+#main-navbar .brand-white {
+    color: #1e90ff;
+    text-shadow: 0px 0px 18px rgba(30, 144, 255, 0.35);
+    transition: 0.25s ease;
+}
+
+#main-navbar .brand-blue {
+    color: #ffffff;
+    transition: 0.25s ease;
+}
+
 #main-navbar .navbar-brand {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 900 !important;
     letter-spacing: 0.6px;
     text-transform: uppercase;
 }
 
-/* Nav links */
-#main-navbar .nav-link {
-    font-size: 14px;
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.75) !important;
-    padding: 10px 14px;
-    border-radius: 12px;
+/* =========================================================
+   BRAND PREMIUM EFFECT (FIXED - NO BUTTON LOOK)
+   Scoped: #main-navbar only
+   ========================================================= */
+
+#main-navbar .nav-brand-link {
+    /* IMPORTANT: no padding/background/box-shadow */
+    padding: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    transform: translateZ(0);
+    will-change: transform;
+
     transition: 0.25s ease;
 }
 
-#main-navbar .nav-link:hover {
-    color: #ffc107 !important;
-    background: rgba(255, 193, 7, 0.10);
+/* Prevent underline / bootstrap weirdness */
+#main-navbar .nav-brand-link,
+#main-navbar .nav-brand-link:hover,
+#main-navbar .nav-brand-link:focus {
+    text-decoration: none !important;
+    outline: none !important;
 }
 
-/* Active page link */
-#main-navbar .nav-link.active {
-    color: #111827 !important;
-    background: #ffc107;
-    font-weight: 900;
+/* IMPORTANT: No hover button background */
+#main-navbar .nav-brand-link:hover {
+    background: transparent !important;
+    box-shadow: none !important;
 }
 
-/* Dropdown menu */
-#main-navbar .dropdown-menu {
+/* Press (tiny only, no layout box) */
+#main-navbar .nav-brand-link:active {
+    transform: scale(0.99);
+}
+
+/* Air wave overlay (still works) */
+#main-navbar .nav-brand-link::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -140%;
+    width: 140%;
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(30, 144, 255, 0.18) 25%,
+        rgba(255, 255, 255, 0.25) 50%,
+        rgba(30, 144, 255, 0.18) 75%,
+        rgba(255, 255, 255, 0) 100%
+    );
+
+    opacity: 0;
+    pointer-events: none;
+    filter: blur(1px);
+}
+
+/* Wave ON (JS adds this class) */
+#main-navbar .nav-brand-link.wave-on::before {
+    opacity: 1;
+    animation: brandWaveMove 0.78s ease forwards;
+}
+
+@keyframes brandWaveMove {
+    0% { left: -140%; }
+    100% { left: 140%; }
+}
+
+/* Ripple */
+#main-navbar .brand-ripple {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+
+    pointer-events: none;
+    z-index: 2;
+
+    transform: scale(0);
+    opacity: 0.75;
+
+    background: radial-gradient(
+        circle,
+        rgba(30, 144, 255, 0.35) 0%,
+        rgba(255, 255, 255, 0.20) 35%,
+        rgba(30, 144, 255, 0.10) 60%,
+        rgba(0, 0, 0, 0) 75%
+    );
+}
+
+#main-navbar .brand-ripple.ripple-on {
+    animation: rippleExpand 0.85s ease forwards;
+}
+
+@keyframes rippleExpand {
+    0% { transform: scale(0); opacity: 0.85; }
+    100% { transform: scale(18); opacity: 0; }
+}
+
+/* Text flip */
+#main-navbar .nav-brand-link.flip-on .brand-white {
+    color: #ffffff !important;
+    text-shadow: 0px 0px 18px rgba(255, 255, 255, 0.30);
+}
+
+#main-navbar .nav-brand-link.flip-on .brand-blue {
+    color: #1e90ff !important;
+    text-shadow: 0px 0px 18px rgba(30, 144, 255, 0.55);
+}
+
+/* Logo glow */
+#main-navbar .nav-brand-link.flip-on .nav-logo {
+    filter: drop-shadow(0px 0px 14px rgba(30, 144, 255, 0.45));
+}
+
+/* Bounce micro animation */
+#main-navbar .nav-brand-link.bounce-on {
+    animation: brandBounce 0.55s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes brandBounce {
+    0%   { transform: scale(1); }
+    35%  { transform: scale(1.02); }
+    65%  { transform: scale(0.995); }
+    100% { transform: scale(1); }
+}
+
+/* =========================================================
+   NAVBAR STRUCTURE
+   ========================================================= */
+
+#main-navbar .navbar-collapse {
+    position: relative;
+}
+
+/* NAV LINKS POSITION */
+#main-navbar .navbar-nav.me-auto {
+    position: absolute;
+
+    left: 40%;
+    top: 50%;
+    transform: translate(-100%, -50%);
+
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Right side wrapper */
+#main-navbar .navbar-collapse > .d-flex {
+    margin-left: auto;
+}
+
+/* NAV LINKS */
+#main-navbar .navbar-nav.me-auto .nav-link {
+    font-size: 14px;
+    font-weight: 850;
+    color: var(--text-secondary) !important;
+
+    padding: 6px 2px !important;
+    margin: 0 !important;
+
+    background: transparent !important;
+    border-radius: 0px !important;
+    border: none !important;
+
+    position: relative;
+    transition: 0.2s ease;
+}
+
+/* Hover */
+#main-navbar .navbar-nav.me-auto .nav-link:hover {
+    color: #ffffff !important;
+}
+
+/* Underline */
+#main-navbar .navbar-nav.me-auto .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -9px;
+    width: 0%;
+    height: 3px;
+    background: #1e90ff;
+    border-radius: 50px;
+    transition: 0.25s ease;
+}
+
+/* Active */
+#main-navbar .navbar-nav.me-auto .nav-link.active {
+    color: #ffffff !important;
+    font-weight: 950;
+}
+
+#main-navbar .navbar-nav.me-auto .nav-link.active::after {
+    width: 100%;
+}
+
+/* Right side links no underline */
+#main-navbar .navbar-collapse > .d-flex .nav-link::after {
+    display: none !important;
+}
+
+/* SEARCH BAR */
+#main-navbar .nav-search {
+    display: flex;
+    align-items: center;
+
+    width: 340px;
+    max-width: 340px;
+
+    background: rgba(30, 144, 255, 0.12);
+    border: 1px solid rgba(30, 144, 255, 0.35);
     border-radius: 16px;
-    padding: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    box-shadow: 0px 18px 45px rgba(0, 0, 0, 0.18);
+
+    overflow: hidden;
+    transition: 0.25s ease;
+}
+
+#main-navbar .nav-search:focus-within {
+    border-color: rgba(30, 144, 255, 0.85);
+    box-shadow: 0px 0px 0px 4px rgba(30, 144, 255, 0.25);
+    background: rgba(30, 144, 255, 0.16);
+}
+
+#main-navbar .nav-search-input {
+    flex: 1;
+
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+
+    background: transparent !important;
+    color: #fff !important;
+
+    font-size: 14px;
+    font-weight: 750;
+
+    padding: 12px 14px;
+    min-width: 0;
+}
+
+#main-navbar .nav-search-input::placeholder {
+    color: rgba(255, 255, 255, 0.65);
+}
+
+#main-navbar .nav-search-btn {
+    border: none !important;
+    background: transparent !important;
+
+    color: #1e90ff !important;
+    padding: 12px 14px;
+    font-size: 16px;
+
+    transition: 0.2s ease;
+}
+
+#main-navbar .nav-search-btn:hover {
+    color: #ffffff !important;
+    transform: scale(1.06);
+}
+
+/* CART BADGE */
+#main-navbar .nav-item.position-relative .nav-link {
+    padding-right: 12px !important;
+}
+
+#main-navbar .cart-badge {
+    position: absolute;
+    top: -2px;
+    right: -3px;
+
+    min-width: 18px;
+    height: 18px;
+    padding: 0px 6px;
+
+    border-radius: 999px;
+    background: linear-gradient(135deg, #1e90ff, #00c6ff);
+    color: #0b1020;
+
+    font-size: 11px;
+    font-weight: 950;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid rgba(18, 18, 18, 0.95);
+    box-shadow: 0px 6px 18px rgba(30, 144, 255, 0.35);
+}
+
+/* DROPDOWN */
+#main-navbar .dropdown-menu {
+    border-radius: 14px;
+    padding: 8px;
+
+    background: #121212;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+
+    box-shadow: 0px 14px 35px rgba(0, 0, 0, 0.35);
 }
 
 #main-navbar .dropdown-item {
     font-size: 14px;
-    font-weight: 700;
-    border-radius: 12px;
+    font-weight: 750;
+
     padding: 10px 12px;
-    transition: 0.2s ease;
+    border-radius: 10px;
+
+    color: rgba(255, 255, 255, 0.78);
+    background: transparent;
+
+    transition: 0.18s ease;
 }
 
 #main-navbar .dropdown-item:hover {
-    background: rgba(255, 193, 7, 0.14);
-    color: #111827;
+    background: rgba(30, 144, 255, 0.14);
+    color: #ffffff;
 }
 
-/* Search form */
-#main-navbar form input.form-control {
-    height: 44px;
-    border-radius: 14px 0 0 14px !important;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: rgba(255, 255, 255, 0.06);
-    color: white;
-    font-size: 14px;
-    font-weight: 600;
-    transition: 0.25s ease;
-}
-
-#main-navbar form input.form-control::placeholder {
-    color: rgba(255, 255, 255, 0.55);
-}
-
-#main-navbar form input.form-control:focus {
-    outline: none;
-    border-color: rgba(255, 193, 7, 0.55);
-    box-shadow: 0px 0px 0px 4px rgba(255, 193, 7, 0.12);
-}
-
-/* Search button */
-#main-navbar form button.btn-warning {
-    height: 44px;
-    border-radius: 0 14px 14px 0 !important;
-    font-weight: 900;
-    border: none;
-    transition: 0.25s ease;
-}
-
-#main-navbar form button.btn-warning:hover {
-    transform: translateY(-2px);
-    box-shadow: 0px 14px 28px rgba(255, 193, 7, 0.25);
-}
-
-/* Cart badge */
-#main-navbar .cart-badge {
-    position: absolute;
-    top: 2px;
-    right: 0px;
-    min-width: 20px;
-    height: 20px;
-    padding: 0px 6px;
-    border-radius: 50px;
-    background: #ffc107;
-    color: #111827;
-    font-size: 12px;
-    font-weight: 900;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid #0f172a;
-}
-
-/* Toggler */
+/* TOGGLER */
 #main-navbar .navbar-toggler {
     border-radius: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.14);
     padding: 8px 10px;
+    background: rgba(255, 255, 255, 0.06);
 }
 
 #main-navbar .navbar-toggler:focus {
-    box-shadow: 0px 0px 0px 4px rgba(255, 193, 7, 0.12);
+    box-shadow: 0px 0px 0px 4px rgba(30, 144, 255, 0.22);
 }
 
-/* Mobile spacing fix */
-@media (max-width: 992px) {
-    body {
-        padding-top: 95px;
+/* MOBILE */
+@media (max-width: 991px) {
+
+    #main-navbar .navbar-nav.me-auto {
+        position: static !important;
+        left: auto !important;
+        top: auto !important;
+        transform: none !important;
+
+        gap: 10px;
+        margin-top: 10px !important;
+        margin-bottom: 10px !important;
     }
 
-    #main-navbar form {
-        margin-top: 12px;
-        margin-bottom: 12px;
-    }
-
-    #main-navbar .nav-link {
-        padding: 10px 12px;
-    }
-}
-
-@media (max-width: 992px) {
-    #main-navbar form.d-flex.flex-grow-1.mx-lg-3 {
+    #main-navbar .nav-search {
+        width: 100%;
         max-width: 100%;
+        margin-top: 10px;
     }
 
-    #main-navbar form.d-flex.flex-grow-1.mx-lg-3 input.form-control {
-        height: 44px;
-        border-radius: 14px 0 0 14px !important;
+    #main-navbar .navbar-nav.me-auto .nav-link::after {
+        bottom: -4px;
     }
 
-    #main-navbar form.d-flex.flex-grow-1.mx-lg-3 button.btn.btn-warning {
-        height: 44px;
-        border-radius: 0 14px 14px 0 !important;
+    #main-navbar .cart-badge {
+        top: 0px;
+        right: -2px;
     }
 }
 </style>
 
-{% load static %}
 
 <header>
-    <nav id="main-navbar" class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
-        <div class="container-fluid">
+  <nav id="main-navbar" class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+    <div class="container-fluid">
 
-            <!-- BRAND (LOGO + NAME) -->
-            <a class="navbar-brand d-flex align-items-center gap-2 text-warning fw-bold"
+      <!-- BRAND -->
+      <a class="navbar-brand nav-brand-link d-flex align-items-center gap-2"
+         id="animexanimeBrand"
+         href="{% url 'home_page' %}"
+         data-href="{% url 'home_page' %}">
+        <img src="{% static 'images/logo-pic2.png' %}" alt="AnimeXAnime Logo" class="nav-logo">
+
+        <span class="brand-text d-none d-md-inline">
+          <span class="brand-white">Anime</span>
+          <span class="brand-blue">X</span>
+          <span class="brand-white">Anime</span>
+        </span>
+      </a>
+
+      <!-- MOBILE TOGGLER -->
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- LEFT NAV LINKS -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+          <li class="nav-item">
+            <a class="nav-link {% if current_page == 'home' %}active{% endif %}"
                href="{% url 'home_page' %}">
-                <img src="{% static 'images/logo.png' %}" alt="E-Shop Logo" class="nav-logo">
-                <span></span>
+              Home
             </a>
+          </li>
 
-            <!-- MOBILE TOGGLER -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent">
-                <span class="navbar-toggler-icon"></span>
+          <li class="nav-item">
+            <a class="nav-link {% if current_page == 'about' %}active{% endif %}"
+               href="{% url 'about_page' %}">
+              About
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link {% if current_page == 'contact' %}active{% endif %}"
+               href="{% url 'contact_page' %}">
+              Contact
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link {% if current_page == 'products' %}active{% endif %}"
+               href="{% url 'products' %}">
+              Products
+            </a>
+          </li>
+
+        </ul>
+
+        <!-- RIGHT SIDE (SEARCH + CART + ACCOUNT) -->
+        <div class="d-flex align-items-center gap-3">
+
+          <!-- SEARCH -->
+          <form class="nav-search"
+                method="get"
+                action="{% url 'search_products' %}">
+
+            <input name="q"
+                   value="{{ query }}"
+                   class="nav-search-input"
+                   type="search"
+                   placeholder="Search action figures..."
+                   aria-label="Search">
+
+            <button class="nav-search-btn" type="submit">
+              <i class="bi bi-search"></i>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          </form>
 
-                <!-- LEFT NAV LINKS -->
-                <ul class="navbar-nav me-3 mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link {% if current_page == 'home' %}active{% endif %}"
-                           href="{% url 'home_page' %}">
-                           Home
-                        </a>
-                    </li>
+          <!-- CART -->
+          <div class="nav-item position-relative">
+            <a class="nav-link" href="{% url 'view_cart' %}">
+              <i class="bi bi-cart3 fs-4"></i>
 
-                    <li class="nav-item">
-                        <a class="nav-link {% if current_page == 'about' %}active{% endif %}"
-                           href="{% url 'about_page' %}">
-                           About
-                        </a>
-                    </li>
+              {% if user.is_authenticated %}
+              <span class="cart-badge" id="cart-count"
+                    data-count-url="{% url 'cart_count' %}">
+                0
+              </span>
+              {% endif %}
+            </a>
+          </div>
 
-                    <li class="nav-item">
-                        <a class="nav-link {% if current_page == 'contact' %}active{% endif %}"
-                           href="{% url 'contact_page' %}">
-                           Contact
-                        </a>
-                    </li>
+          <!-- ACCOUNT -->
+          <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle d-flex align-items-center"
+               href="#" data-bs-toggle="dropdown">
+              <i class="bi bi-person-circle me-1"></i>
 
-                    <li class="nav-item">
-                        <a class="nav-link {% if current_page == 'products' %}active{% endif %}"
-                           href="{% url 'products' %}">
-                           Products
-                        </a>
-                    </li>
-                </ul>
+              {% if user.is_authenticated %}
+                {{ user.username|capfirst }}
+              {% else %}
+                Hi User!
+              {% endif %}
+            </a>
 
-                <!-- SEARCH BAR -->
-                <form class="d-flex flex-grow-1 mx-lg-3"
-                      method="get"
-                      action="{% url 'search_products' %}">
+            <ul class="dropdown-menu dropdown-menu-end">
 
-                    <input name="q"
-                           value="{{ query }}"
-                           class="form-control rounded-start"
-                           type="search"
-                           placeholder="Search Action-figures..."
-                           aria-label="Search">
-
-                    <button class="btn btn-warning rounded-end" type="submit">
-                        <i class="bi bi-search"></i>
-                    </button>
+              {% if user.is_authenticated %}
+              <li>
+                <form action="{% url 'logout' %}" method="post">
+                  {% csrf_token %}
+                  <button class="dropdown-item text-danger">
+                    Logout
+                  </button>
                 </form>
+              </li>
+              {% else %}
+              <li><a class="dropdown-item" href="{% url 'signup' %}">Register</a></li>
+              <li><a class="dropdown-item" href="{% url 'signin' %}">Login</a></li>
+              {% endif %}
 
-                <!-- RIGHT SIDE -->
-                <ul class="navbar-nav ms-auto align-items-center mb-2 mb-lg-0">
+            </ul>
+          </div>
 
-                    <!-- CART -->
-                    <li class="nav-item me-3 position-relative">
-                        <a class="nav-link" href="{% url 'view_cart' %}">
-                            <i class="bi bi-cart3 fs-4"></i>
-
-                            {% if user.is_authenticated %}
-                                <span class="cart-badge" id="cart-count"
-                                      data-count-url="{% url 'cart_count' %}">
-                                      0
-                                </span>
-                            {% endif %}
-                        </a>
-                    </li>
-
-                    <!-- ACCOUNT -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle d-flex align-items-center"
-                           href="#" data-bs-toggle="dropdown">
-                            <i class="bi bi-person-circle me-1"></i>
-
-                            {% if user.is_authenticated %}
-                                {{ user.username|capfirst }}
-                            {% else %}
-                                Hi User!
-                            {% endif %}
-                        </a>
-
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            {% if user.is_authenticated %}
-                                <li>
-                                    <form action="{% url 'logout' %}" method="post">
-                                        {% csrf_token %}
-                                        <button class="dropdown-item text-danger">
-                                            Logout
-                                        </button>
-                                    </form>
-                                </li>
-                            {% else %}
-                                <li><a class="dropdown-item" href="{% url 'signup' %}">Register</a></li>
-                                <li><a class="dropdown-item" href="{% url 'signin' %}">Login</a></li>
-                            {% endif %}
-                        </ul>
-                    </li>
-
-                </ul>
-
-            </div>
         </div>
-    </nav>
+
+      </div>
+    </div>
+  </nav>
 </header>
+
+
+<script>
+/* =========================================================
+   AnimeXAnime Brand (NO BUTTON LOOK + Premium Effects)
+   Scoped: ONLY #main-navbar #animexanimeBrand
+   ========================================================= */
+
+(function () {
+  const navbar = document.getElementById("main-navbar");
+  if (!navbar) return;
+
+  const brand = document.getElementById("animexanimeBrand");
+  if (!brand) return;
+
+  let isAnimating = false;
+
+  function clearOldRipple() {
+    const oldRipple = brand.querySelector(".brand-ripple");
+    if (oldRipple) oldRipple.remove();
+  }
+
+  function createRipple(x, y) {
+    clearOldRipple();
+
+    const ripple = document.createElement("span");
+    ripple.className = "brand-ripple";
+
+    ripple.style.left = x + "px";
+    ripple.style.top = y + "px";
+
+    brand.appendChild(ripple);
+
+    void ripple.offsetWidth;
+    ripple.classList.add("ripple-on");
+
+    setTimeout(() => {
+      ripple.remove();
+    }, 900);
+  }
+
+  function playBrandAnimation() {
+    if (isAnimating) return;
+    isAnimating = true;
+
+    brand.classList.remove("wave-on", "flip-on", "bounce-on");
+    void brand.offsetWidth;
+
+    brand.classList.add("wave-on");
+    brand.classList.add("flip-on");
+    brand.classList.add("bounce-on");
+
+    setTimeout(() => {
+      brand.classList.remove("flip-on");
+    }, 520);
+
+    setTimeout(() => {
+      brand.classList.remove("wave-on", "bounce-on");
+      isAnimating = false;
+    }, 820);
+  }
+
+  // CLICK HANDLER (prevents layout shift)
+  brand.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const rect = brand.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    createRipple(x, y);
+    playBrandAnimation();
+
+    const goTo = brand.getAttribute("data-href") || brand.getAttribute("href");
+
+    setTimeout(() => {
+      window.location.href = goTo;
+    }, 720);
+  });
+
+})();
+</script>
