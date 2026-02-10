@@ -11,8 +11,9 @@ Delete Product Image
    DELETE PRODUCT IMAGE PAGE (Scoped)
    Only affects #product-detail-section
    ========================================= */
+
 #productImageCarousel .carousel-actions {
-    display: none !important;
+  display: none !important;
 }
 
 #product-detail-section {
@@ -20,40 +21,66 @@ Delete Product Image
   padding-bottom: 40px !important;
 }
 
-/* Left + Right column spacing */
+/* Better spacing */
 #product-detail-section .row {
   --bs-gutter-x: 2rem;
   --bs-gutter-y: 2rem;
 }
 
-/* Right side card */
+/* =========================================
+   IMPORTANT FIX:
+   Stop carousel moving (remove sticky)
+   Only affects this page section
+   ========================================= */
+
+#product-detail-section #productImageCarousel,
+#product-detail-section .product-carousel,
+#product-detail-section .carousel,
+#product-detail-section .carousel-inner {
+  position: relative !important;
+  top: auto !important;
+}
+
+/* If your include has sticky-top */
+#product-detail-section .sticky-top,
+#product-detail-section .position-sticky {
+  position: relative !important;
+  top: auto !important;
+}
+
+/* =========================================
+   Right side card
+   ========================================= */
+
 #product-detail-section .product-info {
   background: #ffffff;
   border-radius: 18px;
   padding: 28px;
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.08);
   border: 1px solid rgba(0, 0, 0, 0.06);
+  color: #111; /* force black text */
 }
 
 /* Heading */
 #product-detail-section .product-info h3 {
-  font-weight: 800;
+  font-weight: 900;
   font-size: 1.7rem;
   letter-spacing: 0.2px;
+  color: #111;
 }
 
 /* Paragraph */
 #product-detail-section .product-info p {
   font-size: 1.05rem;
   line-height: 1.7;
-  color: #444;
+  color: rgba(0, 0, 0, 0.75);
   margin-bottom: 18px;
 }
 
 /* Product title highlight */
 #product-detail-section .product-info strong {
   color: #111;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 /* Image preview */
@@ -70,7 +97,7 @@ Delete Product Image
 /* Buttons */
 #product-detail-section .product-info .btn {
   padding: 12px 18px;
-  font-weight: 700;
+  font-weight: 800;
   border-radius: 12px;
   transition: 0.2s ease;
 }
@@ -82,9 +109,9 @@ Delete Product Image
 
 /* Cancel button */
 #product-detail-section .product-info .btn-secondary {
-  background: #1f2937;
-  border-color: #1f2937;
-  box-shadow: 0 10px 25px rgba(31, 41, 55, 0.25);
+  background: #111827;
+  border-color: #111827;
+  box-shadow: 0 10px 25px rgba(17, 24, 39, 0.18);
 }
 
 /* Hover effects */
@@ -92,7 +119,7 @@ Delete Product Image
   transform: translateY(-2px);
 }
 
-/* Make buttons full width on mobile */
+/* Responsive */
 @media (max-width: 576px) {
   #product-detail-section .product-info .d-flex {
     flex-direction: column;
@@ -106,51 +133,52 @@ Delete Product Image
 </style>
 
 <section id="product-detail-section" class="container py-5">
-    <div class="row g-4 align-items-start">
+  <div class="row g-4 align-items-start">
 
-        <!-- LEFT: Product Image Carousel -->
-        <div class="col-lg-6">
-            {% include 'product/includes/productImageCarousel.html' %}
-        </div>
-
-        <!-- RIGHT: Delete Confirmation -->
-        <div class="col-lg-6">
-            <div class="product-info">
-
-                <h3 class="text-danger mb-3">
-                    Delete Image?
-                </h3>
-
-                <p class="mb-3">
-                    Are you sure you want to delete this image from
-                    <strong>{{ image.product.title }}</strong>?
-                </p>
-
-                <!-- Image preview -->
-                <img src="{{ image.img.url }}"
-                     class="img-fluid rounded mb-4"
-                     style="max-height: 240px; object-fit: contain;"
-                     alt="Image to delete">
-
-                <form method="post">
-                    {% csrf_token %}
-
-                    <div class="d-flex gap-2">
-                        <button type="submit" class="btn btn-danger">
-                            Yes, Delete
-                        </button>
-
-                        <a href="{% url 'product_details' image.product.pk %}"
-                           class="btn btn-secondary">
-                            Cancel
-                        </a>
-                    </div>
-                </form>
-
-            </div>
-        </div>
-
+    <!-- LEFT: Product Image Carousel -->
+    <div class="col-lg-6">
+      {% include 'product/includes/productImageCarousel.html' %}
     </div>
+
+    <!-- RIGHT: Delete Confirmation -->
+    <div class="col-lg-6">
+      <div class="product-info">
+
+        <h3 class="text-danger mb-3">
+          Delete Image?
+        </h3>
+
+        <p class="mb-3">
+          Are you sure you want to delete this image from
+          <strong>{{ image.product.title }}</strong>?
+        </p>
+
+        <!-- Image preview -->
+        <img src="{{ image.img.url }}"
+             class="img-fluid rounded mb-4"
+             style="max-height: 240px; object-fit: contain;"
+             alt="Image to delete">
+
+        <form method="post">
+          {% csrf_token %}
+
+          <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-danger">
+              Yes, Delete
+            </button>
+
+            <a href="{% url 'product_details' image.product.pk %}"
+               class="btn btn-secondary">
+              Cancel
+            </a>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+
+  </div>
 </section>
 
 {% endblock %}

@@ -10,25 +10,67 @@ Edit Product
    EDIT PRODUCT PAGE (Scoped - Safe)
    Only affects #product-detail-section
    ========================================== */
+
 /* Hide edit/delete icons ONLY inside productImageCarousel */
-
-
 #productImageCarousel .carousel-actions {
-    display: none !important;
+  display: none !important;
+}
+
+/* Page section */
+#product-detail-section .sticky-carousel-wrap {
+  position: sticky;
+  top: 95px;
+}
+
+
+#product-detail-section .product-info img.current-preview {
+  margin-bottom: 18px;
 }
 
 #product-detail-section {
-  background: linear-gradient(135deg, #f8fafc, #ffffff);
+  background: #ffffff !important; /* white background */
   border-radius: 18px;
+  padding-top: 40px !important;
+  padding-bottom: 40px !important;
 }
 
-/* Right side card */
+/* Better spacing */
+#product-detail-section .row {
+  --bs-gutter-x: 2rem;
+  --bs-gutter-y: 2rem;
+}
+
+/* ==========================================
+   IMPORTANT FIX:
+   Stop carousel moving (remove sticky)
+   Only affects this page
+   ========================================== */
+
+#product-detail-section #productImageCarousel,
+#product-detail-section .product-carousel,
+#product-detail-section .carousel,
+#product-detail-section .carousel-inner {
+  position: relative !important;
+  top: auto !important;
+}
+
+#product-detail-section .sticky-top,
+#product-detail-section .position-sticky {
+  position: relative !important;
+  top: auto !important;
+}
+
+/* ==========================================
+   Right side card
+   ========================================== */
+
 #product-detail-section .product-info {
   background: #ffffff;
   border-radius: 18px;
   padding: 34px;
   box-shadow: 0px 18px 55px rgba(0, 0, 0, 0.10);
-  border: 1px solid #f1f5f9;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  color: #111; /* force black text */
 }
 
 /* Thumbnail */
@@ -37,7 +79,7 @@ Edit Product
   height: 200px;
   object-fit: cover;
   border-radius: 16px;
-  border: 1px solid #eef2f7;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.10);
 }
 
@@ -45,7 +87,7 @@ Edit Product
 #product-detail-section .product-title {
   font-size: 1.6rem;
   font-weight: 900;
-  color: #111827;
+  color: #111; /* black */
   letter-spacing: 0.3px;
   line-height: 1.2;
 }
@@ -58,12 +100,12 @@ Edit Product
   margin-bottom: 18px;
 }
 
-/* Labels (Django default) */
+/* Labels */
 #product-detail-section form label {
   display: block;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 0.92rem;
-  color: #374151;
+  color: #111; /* black */
   margin-bottom: 7px;
 }
 
@@ -75,10 +117,17 @@ Edit Product
   padding: 12px 14px;
   font-size: 0.95rem;
   border-radius: 12px;
-  border: 1px solid #e5e7eb;
-  background: #f9fafb;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  background: #ffffff; /* white */
+  color: #111; /* black text */
   outline: none;
   transition: all 0.2s ease;
+}
+
+/* Placeholder */
+#product-detail-section form input::placeholder,
+#product-detail-section form textarea::placeholder {
+  color: rgba(0, 0, 0, 0.45);
 }
 
 /* Textarea */
@@ -91,16 +140,9 @@ Edit Product
 #product-detail-section form input:focus,
 #product-detail-section form select:focus,
 #product-detail-section form textarea:focus {
-  border-color: #22c55e;
-  background: #fff;
-  box-shadow: 0px 0px 0px 4px rgba(34, 197, 94, 0.16);
-}
-
-/* File input */
-#product-detail-section form input[type="file"] {
-  background: #fff;
-  padding: 10px;
-  cursor: pointer;
+  border-color: #f0ad4e;
+  background: #ffffff;
+  box-shadow: 0px 0px 0px 4px rgba(240, 173, 78, 0.18);
 }
 
 /* Help text */
@@ -108,7 +150,7 @@ Edit Product
   display: block;
   margin-top: 6px;
   font-size: 0.82rem;
-  color: #6b7280;
+  color: rgba(0, 0, 0, 0.55);
 }
 
 /* Error list */
@@ -121,7 +163,50 @@ Edit Product
 #product-detail-section form .errorlist li {
   color: #dc2626;
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: 800;
+}
+
+/* ==========================================
+   PROFESSIONAL FILE INPUT (White bg + Black text)
+   ========================================== */
+
+#product-detail-section form input[type="file"] {
+  background: #ffffff !important;
+  color: #111 !important;
+  padding: 12px;
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+/* Choose file button */
+#product-detail-section form input[type="file"]::file-selector-button {
+  background: #0b0f19;
+  color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 900;
+  margin-right: 12px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+#product-detail-section form input[type="file"]::file-selector-button:hover {
+  transform: translateY(-1px);
+  background: #111827;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+}
+
+/* Safari fallback */
+#product-detail-section form input[type="file"]::-webkit-file-upload-button {
+  background: #0b0f19;
+  color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 900;
+  margin-right: 12px;
+  cursor: pointer;
 }
 
 /* ==========================================
@@ -131,7 +216,7 @@ Edit Product
 #product-detail-section .product-action-buttons .btn {
   border-radius: 14px;
   padding: 11px 18px;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: 0.2px;
   transition: all 0.25s ease;
 }
@@ -193,53 +278,53 @@ Edit Product
     width: 100%;
   }
 }
-
 </style>
+
 <section id="product-detail-section" class="container py-5">
-    <div class="row g-4 align-items-start">
+  <div class="row g-4 align-items-start">
 
-        <!-- LEFT: Product Image Carousel -->
-        <div class="col-lg-6">
-            {% include 'product/includes/productImageCarousel.html' %}
-        </div>
-
-        <!-- RIGHT: Edit Product -->
-        <div class="col-lg-6">
-            <div class="product-info">
-
-                <!-- Thumbnail (same as details page) -->
-                {% if product.thumbnail %}
-                    <img src="{{ product.thumbnail.url }}"
-                         class="product-thumbnail mb-3"
-                         alt="{{ product.title }}">
-                {% endif %}
-
-                <!-- Title -->
-                <h2 class="product-title mb-3">
-                    Edit {{ product.title }}
-                </h2>
-
-                <!-- Edit form -->
-                <form method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-
-                    <div class="d-flex gap-2 mt-3 product-action-buttons">
-                        <button type="submit" class="btn btn-success">
-                            Save Changes
-                        </button>
-
-                        <a href="{% url 'product_details' product.pk %}"
-                           class="btn btn-secondary">
-                            Cancel
-                        </a>
-                    </div>
-                </form>
-
-            </div>
-        </div>
-
+    <!-- LEFT: Product Image Carousel -->
+    <div class="col-lg-6">
+      {% include 'product/includes/productImageCarousel.html' %}
     </div>
+
+    <!-- RIGHT: Edit Product -->
+    <div class="col-lg-6">
+      <div class="product-info">
+
+        <!-- Thumbnail -->
+        {% if product.thumbnail %}
+          <img src="{{ product.thumbnail.url }}"
+               class="product-thumbnail mb-3"
+               alt="{{ product.title }}">
+        {% endif %}
+
+        <!-- Title -->
+        <h2 class="product-title mb-3">
+          Edit {{ product.title }}
+        </h2>
+
+        <!-- Edit form -->
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.as_p }}
+
+          <div class="d-flex gap-2 mt-3 product-action-buttons">
+            <button type="submit" class="btn btn-success">
+              Save Changes
+            </button>
+
+            <a href="{% url 'product_details' product.pk %}"
+               class="btn btn-secondary">
+              Cancel
+            </a>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+  </div>
 </section>
 
 {% endblock %}

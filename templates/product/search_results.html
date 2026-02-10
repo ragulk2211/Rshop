@@ -1,5 +1,4 @@
 
-</style>
 {% extends 'base/base.html' %}
 
 {% block title %}
@@ -7,7 +6,115 @@ Search results for {{query}}
 {% endblock %}
 
 {% block content %}
-<h2>
+<style>
+/* =========================================================
+   SEARCH RESULTS PAGE (Scoped - Safe)
+   Only affects: #search-results-page
+   ========================================================= */
+
+#search-results-page {
+    display: none;
+    padding: 28px 14px;
+
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+/* Header */
+#search-results-page .search-header {
+    background: linear-gradient(135deg,
+        rgba(30, 144, 255, 0.10),
+        rgba(0, 0, 0, 0.0)
+    );
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+
+    padding: 20px 18px;
+    margin-bottom: 18px;
+
+    box-shadow: 0px 18px 45px rgba(0, 0, 0, 0.25);
+}
+
+/* Title */
+#search-results-page .search-header h2 {
+    font-size: 24px;
+    font-weight: 950;
+    margin: 0;
+    color: var(--text-primary);
+    letter-spacing: 0.3px;
+}
+
+/* Query highlight */
+#search-results-page .search-query {
+    color: #1e90ff !important;
+    font-weight: 950;
+    padding: 3px 10px;
+    border-radius: 999px;
+
+    background: rgba(30, 144, 255, 0.14);
+    border: 1px solid rgba(30, 144, 255, 0.30);
+}
+
+/* Sub text */
+#search-results-page .search-subtext {
+    margin-top: 8px;
+    margin-bottom: 0;
+
+    font-size: 14px;
+    font-weight: 750;
+
+    color: var(--text-secondary);
+}
+
+/* Results wrapper */
+#search-results-page .search-results-wrap {
+    margin-top: 16px;
+}
+
+/* =========================================================
+   OPTIONAL: Make product section look spaced nicely
+   (Won't break product card CSS)
+   ========================================================= */
+
+#search-results-page .row {
+    row-gap: 22px;
+}
+
+/* Smooth entry animation */
+#search-results-page {
+    animation: searchFadeIn 0.45s ease both;
+}
+
+@keyframes searchFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+/* =========================================================
+   EMPTY SEARCH RESULT (If you add later)
+   ========================================================= */
+
+#search-results-page .empty-search {
+    text-align: center;
+    padding: 60px 18px;
+
+    border-radius: 18px;
+    border: 1px dashed rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.03);
+
+    color: var(--text-secondary);
+    font-weight: 800;
+}
+
+</style>
+<h2><br>
     Search results for : <span class="text-info">{{query}}</span>
 </h2>
 <section>

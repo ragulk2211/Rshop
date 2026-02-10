@@ -1,2 +1,711 @@
+{% extends "base/base.html" %}
+{% load static %}
 
-{% extends 'base/base.html' %}
+{% block title %}
+Contact | AnimeXAnime
+{% endblock %}
+
+{% block content %}
+
+<style>
+/* ==========================================================
+   AnimeXAnime — Luxury Contact Page (Black/White)
+   Buttons: ONLY Black/White
+   Text: ALWAYS White
+   Scoped: Only affects #ax-contact-page
+   ========================================================== */
+
+#ax-contact-page{
+  padding: 110px 0 55px;
+  min-height: 100vh;
+  background: transparent !important;
+  color: #ffffff !important;
+}
+
+/* Wrapper */
+#ax-contact-page .ax-wrap{
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 14px;
+}
+
+/* ==========================================================
+   HERO
+   ========================================================== */
+
+#ax-contact-page .ax-hero{
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+#ax-contact-page .ax-badge{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 14px;
+  border-radius: 999px;
+
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.35px;
+  color: rgba(255,255,255,0.92);
+  transition: 0.25s ease;
+}
+
+#ax-contact-page .ax-badge:hover{
+  transform: translateY(-1px);
+  border-color: rgba(255,255,255,0.22);
+}
+
+/* Title */
+#ax-contact-page .ax-title{
+  margin-top: 12px;
+  font-size: 40px;
+  font-weight: 950;
+  letter-spacing: 0.5px;
+  color: #ffffff !important;
+  line-height: 1.12;
+}
+
+/* Accent ONLY for small highlight text */
+#ax-contact-page .ax-title span{
+  color: #ffffff !important;
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-decoration-color: rgba(99,102,241,0.95); /* accent allowed */
+  text-underline-offset: 7px;
+}
+
+#ax-contact-page .ax-subtitle{
+  margin: 10px auto 0;
+  max-width: 820px;
+  font-size: 15px;
+  font-weight: 650;
+  color: rgba(255,255,255,0.74) !important;
+  line-height: 1.65;
+}
+
+/* ==========================================================
+   QUICK CARDS
+   ========================================================== */
+
+#ax-contact-page .ax-quick-grid{
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+#ax-contact-page .ax-quick{
+  border-radius: 18px;
+  padding: 16px;
+
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.10);
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  transition: 0.25s ease;
+}
+
+#ax-contact-page .ax-quick:hover{
+  transform: translateY(-3px);
+  border-color: rgba(255,255,255,0.22);
+  box-shadow: 0 16px 45px rgba(0,0,0,0.42);
+}
+
+#ax-contact-page .ax-quick h4{
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 950;
+  color: #ffffff !important;
+}
+
+#ax-contact-page .ax-quick p{
+  margin: 0;
+  font-size: 14px;
+  font-weight: 650;
+  color: rgba(255,255,255,0.72) !important;
+}
+
+/* Accent small highlight */
+#ax-contact-page .ax-small{
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 900;
+  color: rgba(99,102,241,0.95); /* accent allowed */
+}
+
+/* ==========================================================
+   MAIN GRID
+   ========================================================== */
+
+#ax-contact-page .ax-grid{
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 18px;
+}
+
+/* ==========================================================
+   CARD BASE
+   ========================================================== */
+
+#ax-contact-page .ax-card{
+  border-radius: 22px;
+  padding: 20px;
+
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.10);
+
+  box-shadow: 0 14px 40px rgba(0,0,0,0.45);
+  transition: 0.25s ease;
+}
+
+#ax-contact-page .ax-card:hover{
+  border-color: rgba(255,255,255,0.20);
+  box-shadow: 0 18px 55px rgba(0,0,0,0.55);
+}
+
+#ax-contact-page .ax-card h2{
+  margin: 0 0 12px;
+  font-size: 20px;
+  font-weight: 950;
+  color: #ffffff !important;
+}
+
+/* ==========================================================
+   FORM
+   ========================================================== */
+
+#ax-contact-page .ax-form{
+  margin: 0;
+}
+
+#ax-contact-page .ax-row{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+#ax-contact-page .ax-field{
+  margin-top: 12px;
+}
+
+#ax-contact-page label{
+  display: block;
+  font-size: 13px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.85) !important;
+  margin-bottom: 6px;
+  letter-spacing: 0.25px;
+}
+
+#ax-contact-page input,
+#ax-contact-page textarea,
+#ax-contact-page select{
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 14px;
+
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(0,0,0,0.35);
+
+  color: #ffffff !important;
+  font-size: 14px;
+  font-weight: 650;
+
+  outline: none;
+  transition: 0.22s ease;
+}
+
+#ax-contact-page textarea{
+  min-height: 140px;
+  resize: vertical;
+}
+
+#ax-contact-page input::placeholder,
+#ax-contact-page textarea::placeholder{
+  color: rgba(255,255,255,0.45);
+}
+
+/* Hover + Focus */
+#ax-contact-page input:hover,
+#ax-contact-page textarea:hover,
+#ax-contact-page select:hover{
+  border-color: rgba(255,255,255,0.30);
+}
+
+#ax-contact-page input:focus,
+#ax-contact-page textarea:focus,
+#ax-contact-page select:focus{
+  border-color: rgba(255,255,255,0.55);
+  box-shadow: 0 0 0 4px rgba(99,102,241,0.15); /* subtle accent glow */
+}
+
+/* counter */
+#ax-contact-page .ax-counter{
+  margin-top: 7px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+
+  font-size: 12px;
+  font-weight: 850;
+  color: rgba(255,255,255,0.58) !important;
+}
+
+#ax-contact-page .ax-counter span:first-child{
+  color: rgba(99,102,241,0.92); /* accent allowed */
+  font-weight: 900;
+}
+
+/* ==========================================================
+   BUTTONS (ONLY BLACK / WHITE)
+   ========================================================== */
+
+#ax-contact-page .ax-actions{
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 14px;
+
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+/* MAIN BUTTON: black + white */
+#ax-contact-page .ax-btn{
+  width: auto;
+  min-width: 210px;
+  max-width: 260px;
+
+  padding: 13px 18px;
+  border-radius: 16px;
+
+  border: 1px solid rgba(255,255,255,0.22);
+  background: #000000; /* ONLY BLACK */
+  color: #ffffff;      /* ONLY WHITE */
+
+  cursor: pointer;
+
+  font-size: 15px;
+  font-weight: 950;
+  letter-spacing: 0.35px;
+
+  box-shadow: 0 16px 45px rgba(0,0,0,0.45);
+  transition: 0.25s ease;
+}
+
+#ax-contact-page .ax-btn:hover{
+  transform: translateY(-2px);
+  background: #ffffff; /* ONLY WHITE */
+  color: #000000;      /* ONLY BLACK */
+  border-color: rgba(255,255,255,0.50);
+}
+
+#ax-contact-page .ax-btn:active{
+  transform: translateY(0px);
+}
+
+/* loading */
+#ax-contact-page .ax-btn[disabled]{
+  opacity: 0.85;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* spinner (black/white only) */
+#ax-contact-page .ax-spinner{
+  display: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  border: 3px solid rgba(255,255,255,0.30);
+  border-top-color: rgba(255,255,255,0.95);
+  animation: axSpin 0.7s linear infinite;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+#ax-contact-page .ax-btn.ax-loading .ax-spinner{
+  display: inline-block;
+}
+
+@keyframes axSpin{
+  to { transform: rotate(360deg); }
+}
+
+#ax-contact-page .ax-note{
+  font-size: 12px;
+  font-weight: 850;
+  color: rgba(255,255,255,0.62) !important;
+  line-height: 1.45;
+}
+
+#ax-contact-page .ax-note strong{
+  color: rgba(99,102,241,0.92); /* accent allowed */
+}
+
+/* ==========================================================
+   RIGHT SIDE INFO
+   ========================================================== */
+
+#ax-contact-page .ax-side .ax-box{
+  padding: 14px;
+  border-radius: 18px;
+
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 12px;
+
+  transition: 0.25s ease;
+}
+
+#ax-contact-page .ax-side .ax-box:hover{
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,0.22);
+}
+
+#ax-contact-page .ax-side .ax-box h4{
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 950;
+  color: #ffffff !important;
+}
+
+#ax-contact-page .ax-side .ax-box p{
+  margin: 0;
+  font-size: 14px;
+  font-weight: 650;
+  color: rgba(255,255,255,0.72) !important;
+  line-height: 1.55;
+}
+
+/* Social buttons (ONLY black/white) */
+#ax-contact-page .ax-social{
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+#ax-contact-page .ax-social a{
+  flex: 1;
+  text-align: center;
+  padding: 12px 10px;
+
+  border-radius: 16px;
+  text-decoration: none;
+
+  font-weight: 950;
+  font-size: 14px;
+
+  background: #000; /* ONLY BLACK */
+  color: #fff;      /* ONLY WHITE */
+  border: 1px solid rgba(255,255,255,0.20);
+
+  transition: 0.25s ease;
+}
+
+#ax-contact-page .ax-social a:hover{
+  transform: translateY(-2px);
+  background: #fff; /* ONLY WHITE */
+  color: #000;      /* ONLY BLACK */
+  border-color: rgba(255,255,255,0.55);
+}
+
+/* Map */
+#ax-contact-page .ax-map{
+  margin-top: 12px;
+  overflow: hidden;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.10);
+  transition: 0.25s ease;
+}
+
+#ax-contact-page .ax-map:hover{
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,0.22);
+  box-shadow: 0 16px 45px rgba(0,0,0,0.45);
+}
+
+#ax-contact-page .ax-map iframe{
+  width: 100%;
+  height: 235px;
+  border: 0;
+  display: block;
+
+  /* ✅ LITTLE BLACK TONE but still colorful */
+  filter: grayscale(35%) brightness(0.85) contrast(1.15) saturate(1.15);
+}
+
+/* FAQ */
+#ax-contact-page .ax-faq{
+  margin-top: 12px;
+}
+
+#ax-contact-page details{
+  border-radius: 18px;
+  padding: 14px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.10);
+  margin-bottom: 12px;
+  transition: 0.25s ease;
+}
+
+#ax-contact-page details:hover{
+  border-color: rgba(255,255,255,0.22);
+}
+
+#ax-contact-page details[open]{
+  border-color: rgba(99,102,241,0.45); /* accent allowed */
+}
+
+#ax-contact-page summary{
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 950;
+  color: #ffffff !important;
+  list-style: none;
+}
+
+#ax-contact-page summary::-webkit-details-marker{
+  display: none;
+}
+
+#ax-contact-page details p{
+  margin: 10px 0 0;
+  font-size: 14px;
+  font-weight: 650;
+  color: rgba(255,255,255,0.72) !important;
+  line-height: 1.6;
+}
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+
+@media (max-width: 992px){
+  #ax-contact-page .ax-grid{ grid-template-columns: 1fr; }
+  #ax-contact-page .ax-row{ grid-template-columns: 1fr; }
+  #ax-contact-page .ax-quick-grid{ grid-template-columns: 1fr 1fr; }
+  #ax-contact-page .ax-title{ font-size: 34px; }
+
+  #ax-contact-page .ax-actions{
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #ax-contact-page .ax-btn{
+    width: 100%;
+    max-width: none;
+  }
+}
+
+@media (max-width: 576px){
+  #ax-contact-page{ padding: 95px 0 45px; }
+  #ax-contact-page .ax-title{ font-size: 28px; }
+  #ax-contact-page .ax-card{ padding: 16px; border-radius: 18px; }
+  #ax-contact-page .ax-quick-grid{ grid-template-columns: 1fr; }
+}
+</style>
+
+
+<section id="ax-contact-page">
+  <div class="ax-wrap">
+
+    <!-- HERO -->
+    <div class="ax-hero">
+      <div class="ax-badge">🖤 AnimeXAnime Support • Premium Response</div>
+      <h1 class="ax-title">Contact <span>AnimeXAnime</span></h1>
+      <p class="ax-subtitle">
+        Need help with your order, shipping, returns, or product details?
+        Send us a message and our support team will respond quickly.
+      </p>
+
+      <div class="ax-quick-grid">
+        <div class="ax-quick">
+          <h4>⚡ Fast Reply</h4>
+          <p>Usually within 1–3 hours</p>
+          <span class="ax-small">Support Priority</span>
+        </div>
+
+        <div class="ax-quick">
+          <h4>🚚 Shipping</h4>
+          <p>All India delivery available</p>
+          <span class="ax-small">Tracking Included</span>
+        </div>
+
+        <div class="ax-quick">
+          <h4>🔁 Easy Returns</h4>
+          <p>7 days replacement policy</p>
+          <span class="ax-small">Safe & Secure</span>
+        </div>
+
+        <div class="ax-quick">
+          <h4>💳 Secure Payment</h4>
+          <p>Razorpay + UPI supported</p>
+          <span class="ax-small">Trusted Checkout</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN GRID -->
+    <div class="ax-grid">
+
+      <!-- LEFT -->
+      <div class="ax-card">
+        <h2>Send a Message</h2>
+
+        <form method="post" class="ax-form" id="axContactForm">
+          {% csrf_token %}
+
+          <div class="ax-row">
+            <div>
+              <label>Your Name</label>
+              <input type="text" name="name" placeholder="Eg: Ragul" required>
+            </div>
+
+            <div>
+              <label>Email Address</label>
+              <input type="email" name="email" placeholder="Eg: ragul@gmail.com" required>
+            </div>
+          </div>
+
+          <div class="ax-field">
+            <label>Topic</label>
+            <select name="topic" required>
+              <option value="">Select a topic</option>
+              <option value="order">Order / Delivery</option>
+              <option value="refund">Refund / Return</option>
+              <option value="product">Product Info</option>
+              <option value="payment">Payment Issue</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="ax-field">
+            <label>Subject</label>
+            <input type="text" name="subject" placeholder="Eg: I want to cancel my order" required>
+          </div>
+
+          <div class="ax-field">
+            <label>Your Message</label>
+            <textarea name="message" id="axMessage" placeholder="Write your message here..." maxlength="800" required></textarea>
+
+            <div class="ax-counter">
+              <span>⚡ Tip: Add your Order ID for faster help</span>
+              <span id="axCount">0 / 800</span>
+            </div>
+          </div>
+
+          <div class="ax-actions">
+            <button type="submit" class="ax-btn" id="axSubmitBtn">
+              Send Message <span class="ax-spinner"></span>
+            </button>
+
+            <div class="ax-note">
+              🔒 We never share your details.<br>
+              <strong>Expected reply:</strong> within 1–3 hours.
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="ax-card ax-side">
+
+        <h2>Support Info</h2>
+
+        <div class="ax-box">
+          <h4>📍 Store Address</h4>
+          <p>AnimeXAnime Action Figure Store<br>Chennai, Tamil Nadu, India</p>
+        </div>
+
+        <div class="ax-box">
+          <h4>📞 Phone</h4>
+          <p>+91 98765 43210</p>
+        </div>
+
+        <div class="ax-box">
+          <h4>📧 Email</h4>
+          <p>support@animexanime.com</p>
+        </div>
+
+        <div class="ax-box">
+          <h4>⏰ Working Hours</h4>
+          <p>Mon – Sat: 10 AM – 8 PM<br>Sunday: Closed</p>
+        </div>
+
+        <div class="ax-social">
+          <a href="#">Instagram</a>
+          <a href="#">WhatsApp</a>
+          <a href="#">YouTube</a>
+        </div>
+
+        <div class="ax-map">
+          <iframe
+            src="https://www.google.com/maps?q=Chennai%20Tamil%20Nadu&output=embed"
+            loading="lazy">
+          </iframe>
+        </div>
+
+        <div class="ax-faq">
+          <details>
+            <summary>Do you sell original anime figures?</summary>
+            <p>Yes. We sell premium collectible anime action figures with full details.</p>
+          </details>
+
+          <details>
+            <summary>How long does shipping take?</summary>
+            <p>Usually 2–6 days depending on your location. Tracking will be provided.</p>
+          </details>
+
+          <details>
+            <summary>Can I cancel my order?</summary>
+            <p>Yes, you can cancel before shipping. After shipping return policy applies.</p>
+          </details>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+/* ==========================================================
+   Contact Page JS (Scoped + Safe)
+   - Character counter
+   - Loading spinner on submit
+   ========================================================== */
+(function () {
+  const page = document.getElementById("ax-contact-page");
+  if (!page) return;
+
+  const msg = document.getElementById("axMessage");
+  const count = document.getElementById("axCount");
+  const form = document.getElementById("axContactForm");
+  const btn = document.getElementById("axSubmitBtn");
+
+  function updateCount() {
+    if (!msg || !count) return;
+    count.textContent = `${msg.value.length} / 800`;
+  }
+
+  if (msg) msg.addEventListener("input", updateCount);
+  updateCount();
+
+  form.addEventListener("submit", function () {
+    btn.classList.add("ax-loading");
+    btn.setAttribute("disabled", "disabled");
+  });
+})();
+</script>
+
+{% endblock %}
