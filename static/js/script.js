@@ -42,6 +42,8 @@ if (products_container) {
         const productId = product_card.dataset.productId;
 
         btn.disabled = true;
+        btn.innerText = "Added ✓";  // ✅ show immediately
+
 
         // try to make a POST request
 
@@ -71,19 +73,16 @@ if (products_container) {
             console.error(`cart error ${error}`)
         }
         finally {
-            btn.disabled = false;
-            btn.innerText = "Add to Cart"
+            setTimeout(() => {
+                btn.disabled = false;
+                btn.innerText = "Add to Cart";
+            }, 1500);
         }
+
     });
 }
 
-// function getCookie(name){
-//     let cookieValue = null;
 
-//     if (document.cookie && document.cookie !== cookie){
-//         const cookies = document.cookie.split()
-//     }
-// }
 
 document.addEventListener("DOMContentLoaded", () => {
 

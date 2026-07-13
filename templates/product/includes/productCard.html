@@ -1,3 +1,185 @@
+<style>
+/* =========================================================
+   PRODUCT CARD (Scoped - Safe)
+   Only affects: .product-card
+   ========================================================= */
+
+.product-card {
+    
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--bg-card);
+
+    box-shadow: 0px 10px 22px rgba(0, 0, 0, 0.2);
+
+    transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+
+    max-width: 340px;
+    margin: 0 auto;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--border-light);
+    box-shadow: 0px 18px 45px rgba(255, 255, 255, 0.08);
+}
+
+/* Image wrapper */
+.product-card .card-img-top-wrapper {
+    background: var(--bg-tertiary);
+    overflow: hidden;
+}
+
+/* Perfect image size */
+.product-card .product-thumb {
+    width: 100%;
+    height: 280px !important;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease;
+}
+
+.product-card:hover .product-thumb {
+    transform: scale(1.06);
+}
+
+/* Placeholder */
+.product-card .placeholder-img {
+    width: 100%;
+    height: 280px !important;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--text-muted);
+
+    background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-hover));
+}
+
+/* Body */
+.product-card .card-body {
+    padding: 12px 12px;
+    background: var(--bg-card);
+}
+
+/* Title */
+.product-card .product-title {
+    font-size: 18px !important;
+    font-weight: 900;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Description */
+.product-card .product-desc {
+    font-size: 14px;
+    line-height: 1.45;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Price */
+.product-card .product-price {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.product-card .old-price {
+    font-size: 14px;
+    font-weight: 650;
+    color: var(--text-muted);
+}
+
+.product-card .product-discount {
+    font-size: 13px;
+    font-weight: 900;
+    color: var(--text-primary);
+    background: var(--bg-tertiary);
+    padding: 4px 10px;
+    border-radius: 999px;
+}
+
+.product-card .new-price {
+    font-size: 17px;
+    font-weight: 950;
+    color: var(--text-primary);
+}
+
+/* Button */
+.product-card .add-to-cart {
+    border-radius: 14px;
+    padding: 10px 12px;
+    font-weight: 900;
+    background: var(--text-primary);
+    color: var(--text-dark);
+    border: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.product-card .add-to-cart:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 12px 25px rgba(255, 255, 255, 0.15);
+}
+
+/* =========================================================
+   FIX: Remove Bootstrap blue click flash (ONLY product-card)
+   ========================================================= */
+
+.product-card .add-to-cart:active,
+.product-card .add-to-cart:focus,
+.product-card .add-to-cart:focus-visible {
+    background: var(--text-primary) !important;
+    color: var(--text-dark) !important;
+    box-shadow: none !important;
+    outline: none !important;
+    border: none !important;
+}
+
+/* Blue only when disabled (Added state) */
+.product-card .add-to-cart:disabled {
+    background: #0d6efd !important;  /* Bootstrap blue */
+    color: #fff !important;
+    opacity: 1 !important;
+}
+
+
+
+/* Disabled */
+.product-card button[disabled] {
+    border-radius: 14px;
+    padding: 10px 12px;
+    font-weight: 900;
+    opacity: 0.75;
+    background: var(--bg-tertiary);
+    color: var(--text-muted);
+    border: none;
+}
+
+/* Limited stock */
+.product-card .text-warning {
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-size: 13px;
+    font-weight: 850;
+    color: var(--text-secondary) !important;
+}
+</style>
+
+
 <div class="card product-card h-100" data-stock="{% if product.stock > 0 %}in{% else %}out{% endif %}"
     data-product-id="{{product.id}}">
 
@@ -38,7 +220,7 @@
 
                     <!-- Discount Percentage -->
                     <span class="product-discount ms-2">
-                       {{ product.discount }}%
+                        {{ product.discount }}%
                     </span>
 
                     <!-- Offer Price -->
@@ -57,23 +239,34 @@
             </div>
 
         </a>
+        {% if user.is_staff %}
 
+        <!-- STAFF VIEW -->
         {% if product.stock > 0 %}
+        <a href="{% url 'edit_product' product.pk %}" class="btn btn-outline-warning w-100 pro-btn">
+            <i class="bi bi-pencil-square"></i> Edit Product
+        </a>
+        {% else %}
+        <a href="{% url 'edit_product' product.pk %}" class="btn btn-outline-warning w-100 pro-btn">
+            <i class="bi bi-pencil-square"></i> Add Stock
+        </a>
+        {% endif %}
 
+        {% else %}
+
+        <!-- CUSTOMER VIEW -->
+        {% if product.stock > 0 %} 
         <button class="btn btn-sm btn-primary w-100 add-to-cart">
             Add to Cart
-        </button>
-
-        {% if product.stock <= 10 %} <p class="text-warning small fw-semibold">
-            ⚠ Limited stock {{ product.stock }}
-            </p>
-            {% endif %}
-
+            </button>
             {% else %}
             <button class="btn btn-sm btn-secondary w-100" disabled>
                 Out of Stock
             </button>
             {% endif %}
+
+            {% endif %}
+
 
     </div>
 </div>

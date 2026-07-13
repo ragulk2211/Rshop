@@ -6,98 +6,414 @@ Product Details
 
 {% block content %}
 
-<section class="container py-5">
+<style>
+/* =========================================================
+   PRODUCT DETAILS PAGE (Premium)
+   Only affects #products-container
+   ========================================================= */
 
-    <div class="row product-card-details">
+#products-container {
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+  padding-top: 40px !important;
+  padding-bottom: 50px !important;
+}
 
-        <!-- Gallery -->
-        <div class="col-md-6">
+/* Main card */
+#products-container .product-card-details {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 22px;
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 22px 65px rgba(0, 0, 0, 0.35);
+}
 
-            <div id="productCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
-                <div class="carousel-inner">
+/* =========================================================
+   Carousel (Smaller than before)
+   ========================================================= */
 
-                    {% for image in product.images.all %}
-                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+#products-container #productCarousel {
+  border-radius: 22px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.35);
+}
 
-                        <div class="image-wrapper">
+/* Smaller height */
+#products-container #productCarousel,
+#products-container #productCarousel .carousel-inner,
+#products-container #productCarousel .carousel-item,
+#products-container #productCarousel .image-wrapper {
+  height: 68vh;
+  min-height: 420px;
+  max-height: 720px;
+}
 
-                            <!-- Overlay Buttons -->
-                            <div class="image-overlay">
-                                <a href="{% url 'del_pro_image' image.pk %}" class="delete-btn" title="Delete">
-                                    Delete
-                                </a>
+/* Fill nicely */
+#products-container #productCarousel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover !important;
+  background: rgba(0, 0, 0, 0.35);
+}
 
-                                <a href="{% url 'edit_pro_image' image.pk %}" class="edit-btn" title="Edit">
-                                    Edit
-                                </a>
-                            </div>
-                            <!-- Image -->
-                            <img src="{{ image.img.url }}" class="d-block w-100"
-                                alt="product">
-                        </div>
-                    </div>
-                    {% endfor %}
+/* =========================================================
+   Admin Edit/Delete Buttons on Carousel (Scoped)
+   Only affects #products-container
+   ========================================================= */
 
-                </div>
+#products-container .carousel-admin-actions {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  z-index: 5;
 
-                <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon"></span>
-                </button>
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-                <button class="carousel-control-next" type="button" data-bs-target="#productCarousel"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon"></span>
-                </button>
+  pointer-events: none;
+}
+
+#products-container .carousel-admin-actions a {
+  pointer-events: auto;
+}
+
+/* Base button */
+#products-container .carousel-admin-actions .btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  padding: 0 !important;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.35);
+  transition: 0.2s ease;
+}
+
+#products-container .carousel-admin-actions .btn i {
+  font-size: 18px;
+}
+
+/* Delete */
+#products-container .admin-btn-delete {
+  background: rgba(220, 53, 69, 0.22);
+  color: #fff !important;
+}
+
+#products-container .admin-btn-delete:hover {
+  transform: translateY(-2px) scale(1.05);
+  background: rgba(220, 53, 69, 0.35);
+  border-color: rgba(220, 53, 69, 0.55);
+}
+
+/* Edit */
+#products-container .admin-btn-edit {
+  background: rgba(240, 173, 78, 0.22);
+  color: #fff !important;
+}
+
+#products-container .admin-btn-edit:hover {
+  transform: translateY(-2px) scale(1.05);
+  background: rgba(240, 173, 78, 0.35);
+  border-color: rgba(240, 173, 78, 0.55);
+}
+
+/* =========================================================
+   Thumbnails
+   ========================================================= */
+
+#products-container .thumb-img {
+  width: 74px;
+  height: 74px;
+  border-radius: 14px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: 0.25s ease;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+}
+
+#products-container .thumb-img:hover {
+  transform: translateY(-3px) scale(1.05);
+  border-color: rgba(240, 173, 78, 0.55);
+}
+
+/* =========================================================
+   Product text
+   ========================================================= */
+
+#products-container .product-title-details {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.15;
+  letter-spacing: 0.3px;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+}
+
+#products-container .product-details-text-muted {
+  color: rgba(255, 255, 255, 0.70) !important;
+  line-height: 1.75;
+  font-size: 1.05rem;
+  margin-top: 14px;
+}
+
+#products-container .product-price-details {
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: #fff;
+  margin-top: 18px;
+}
+
+#products-container hr {
+  border-color: rgba(255, 255, 255, 0.10);
+}
+
+/* =========================================================
+   Add to cart button (SMALL)
+   ========================================================= */
+
+#products-container .add-to-cart {
+  width: auto !important;
+  min-width: 160px;
+  padding: 10px 14px !important;
+  border-radius: 14px;
+  font-weight: 900;
+  font-size: 14px;
+
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff !important;
+
+  border: none;
+  box-shadow: 0 18px 45px rgba(37, 99, 235, 0.22);
+  transition: 0.25s ease;
+}
+
+#products-container .add-to-cart:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 55px rgba(29, 78, 216, 0.28);
+}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+
+@media (max-width: 992px) {
+  #products-container {
+    max-width: 100% !important;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  #products-container .product-card-details {
+    padding: 18px;
+  }
+
+  #products-container #productCarousel,
+  #products-container #productCarousel .carousel-inner,
+  #products-container #productCarousel .carousel-item,
+  #products-container #productCarousel .image-wrapper {
+    height: 55vh;
+    min-height: 340px;
+  }
+
+  #products-container .product-title-details {
+    font-size: 1.7rem;
+  }
+}
+
+@media (max-width: 576px) {
+  #products-container #productCarousel,
+  #products-container #productCarousel .carousel-inner,
+  #products-container #productCarousel .carousel-item,
+  #products-container #productCarousel .image-wrapper {
+    height: 48vh;
+    min-height: 280px;
+  }
+
+  #products-container .thumb-img {
+    width: 62px;
+    height: 62px;
+  }
+
+  #products-container .carousel-admin-actions {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+  }
+
+  #products-container .carousel-admin-actions .btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+  }
+
+  #products-container .carousel-admin-actions .btn i {
+    font-size: 16px;
+  }
+}
+</style>
+
+
+<section id="products-container"
+         class="container py-5 product-card"
+         data-product-id="{{ product.id }}"
+         data-add-url="{% url 'add_to_cart' %}">
+
+  <div class="row product-card-details">
+
+    <!-- Gallery -->
+    <div class="col-md-6">
+
+      <div id="productCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+        <div class="carousel-inner">
+
+          {% for image in product.images.all %}
+          <div class="carousel-item {% if forloop.first %}active{% endif %}">
+
+            <div class="image-wrapper position-relative">
+
+              <!-- ADMIN ACTION BUTTONS -->
+              {% if user.is_staff %}
+              <div class="carousel-admin-actions">
+
+                <!-- DELETE (Left) -->
+                <a href="{% url 'del_pro_image' image.pk %}"
+                   class="btn admin-btn-delete"
+                   title="Delete Image">
+                  <i class="bi bi-trash3"></i>
+                </a>
+
+                <!-- EDIT (Right) -->
+                <a href="{% url 'edit_pro_image' image.pk %}"
+                   class="btn admin-btn-edit"
+                   title="Edit Image">
+                  <i class="bi bi-pencil-square"></i>
+                </a>
+
+              </div>
+              {% endif %}
+
+              <img src="{{ image.img.url }}" class="d-block w-100" alt="product">
+
             </div>
 
-            <!-- Thumbnails -->
-            <div class="d-flex gap-3 flex-wrap justify-content-center">
-                {% for image in product.images.all %}
-                <img src="{{ image.img.url }}" data-bs-target="#productCarousel"
-                    data-bs-slide-to="{{ forloop.counter0 }}" class="thumb-img shadow-sm">
-                {% endfor %}
-            </div>
+          </div>
+          {% endfor %}
 
         </div>
 
-        <!-- Product Info -->
-        <div class="col-md-6 px-md-5 mt-4 mt-md-0">
+        <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
 
-            <h2 class="product-title-details">{{ product.title }}</h2>
+        <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
 
-            <p class="text-muted mt-3 fs-6 product-details-text-muted">
-                {{ product.desc }}
-            </p>
-
-            <div class="product-price-details mt-3">
-                ₹ {{ product.price }}.00
-            </div>
-
-            <hr class="my-4">
-
-            <div class="d-flex flex-wrap gap-3 mt-4">
-                <a href="#" class="btn btn-primary pro-btn">
-                    <i class="bi bi-cart4"></i> Add to Cart
-                </a>
-
-                <a href="{% url 'edit_product' product.pk %}" class="btn btn-outline-warning pro-btn">
-                    <i class="bi bi-pencil-square"></i> Edit
-                </a>
-
-                <a href="{% url 'delete_product' product.pk %}" class="btn btn-outline-danger pro-btn">
-                    <i class="bi bi-trash3"></i> Delete
-                </a>
-
-
-                <a href="{% url 'add_images' product.id %}" class="btn btn-outline-secondary">
-                    <i class="bi bi-cloud-plus-fill"></i>
-                </a>
-            </div>
-
-        </div>
+      <!-- Thumbnails -->
+      <div class="d-flex gap-3 flex-wrap justify-content-center">
+        {% for image in product.images.all %}
+        <img src="{{ image.img.url }}"
+             data-bs-target="#productCarousel"
+             data-bs-slide-to="{{ forloop.counter0 }}"
+             class="thumb-img shadow-sm"
+             alt="thumb">
+        {% endfor %}
+      </div>
 
     </div>
+
+    <!-- Product Info -->
+    <div class="col-md-6 px-md-5 mt-4 mt-md-0">
+
+      <h2 class="product-title-details">{{ product.title }}</h2>
+
+      <p class="text-muted mt-3 fs-6 product-details-text-muted">
+        {{ product.desc }}
+      </p>
+
+      <div class="product-price-details mt-3">
+        ₹ {{ product.price }}.00
+      </div>
+
+      <hr class="my-4">
+
+      <div class="d-flex flex-wrap align-items-center gap-3 mt-4">
+
+        {% if not user.is_staff %}
+        <button class="btn add-to-cart"
+                id="addToCartBtn"
+                data-product-id="{{ product.id }}">
+          Add to Cart
+        </button>
+        {% else %}
+
+        <a href="{% url 'edit_product' product.pk %}" class="btn btn-outline-warning">
+          <i class="bi bi-pencil-square"></i> Edit Product
+        </a>
+
+        <a href="{% url 'delete_product' product.pk %}" class="btn btn-outline-danger">
+          <i class="bi bi-trash3"></i> Delete Product
+        </a>
+
+        <a href="{% url 'add_images' product.id %}" class="btn btn-outline-secondary">
+          <i class="bi bi-cloud-plus-fill"></i> Add Images
+        </a>
+
+        {% endif %}
+
+      </div>
+
+    </div>
+
+  </div>
 </section>
+
+
+<script>
+/* =========================================================
+   Add to cart -> change SAME button to "Added" for 1 second
+   ========================================================= */
+
+(function () {
+  const btn = document.getElementById("addToCartBtn");
+  if (!btn) return;
+
+  const originalText = btn.innerHTML;
+
+  btn.addEventListener("click", function () {
+
+    btn.innerHTML = "Added ✅";
+
+    btn.style.background = "#16a34a";
+    btn.style.color = "#fff";
+
+    btn.disabled = true;
+    btn.style.opacity = "0.9";
+    btn.style.cursor = "not-allowed";
+
+    setTimeout(() => {
+      btn.innerHTML = originalText;
+
+      btn.style.background = "linear-gradient(135deg, #2563eb, #1d4ed8)";
+      btn.style.color = "#fff";
+
+      btn.disabled = false;
+      btn.style.opacity = "1";
+      btn.style.cursor = "pointer";
+    }, 1000);
+  });
+})();
+</script>
 
 {% endblock %}

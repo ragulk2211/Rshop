@@ -212,6 +212,10 @@ body a.btn.btn-primary {
                 <a href="{% url 'order_detail' order.id %}" class="btn btn-info btn-sm">
                     View Details
                 </a>
+                <a href="{% url 'download_invoice' order.id %}" class="btn btn-dark">
+                   Download Invoice
+                </a>
+
             </td>
         </tr>
         {% endfor %}

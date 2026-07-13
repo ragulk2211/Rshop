@@ -35,9 +35,8 @@
         {% block content %}{% endblock %}
     </main>
     <!-- footer -->
-    <footer class="site-footer">
-        {% include 'base/includes/footer.html' %}
-    </footer>
+    {% block footer %}
+    {% endblock %}
 
     <!-- js from bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
