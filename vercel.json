@@ -1,10 +1,10 @@
 {
   "builds": [
     { "src": "Rshop/wsgi.py", "use": "@vercel/python" },
-    { "src": "Rshop/static/**", "use": "@vercel/static" }
+    { "src": "static/**", "use": "@vercel/static" }
   ],
   "routes": [
-    { "src": "/static/(.*)", "dest": "/Rshop/static/$1" },
+    { "src": "/static/(.*)", "dest": "/static/$1" },
     { "src": "/(.*)", "dest": "Rshop/wsgi.py" }
   ]
 }
